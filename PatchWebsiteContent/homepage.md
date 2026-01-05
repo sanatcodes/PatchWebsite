@@ -13,7 +13,7 @@
 **Body:**
 > 200+ alumni. Starting companies building robots in space and under the ocean. Creating Ireland's student rocket-building community and robot fighting league. Doing research at the world's top universities and labs, from AI alignment to synthetic biology.
 
-> The Summer Programme is our flagship — where most people enter Patch.
+> The Summer Accelerator is our flagship programme.
 
 **Primary CTA:**
 > Apply to Summer Programme 2025
