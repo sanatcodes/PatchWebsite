@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python convert_logo_to_blue.py:*)",
+      "Bash(ls:*)"
+    ]
+  }
+}
