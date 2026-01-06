@@ -35,15 +35,14 @@ const { title, description, featured = false, gridOverlay = false, href, class: 
         border-radius: 4px;
         background-color: rgba(255, 255, 255, 0.6);
         box-shadow: 6px 6px 0 hsla(219, 93%, 42%, 0.06);
-        transition: all 0.1s ease;
+        transition: all 0.2s ease;
         overflow: hidden;
     }
 
     .card-alt:hover {
         border-color: var(--color-blue-300);
-        box-shadow:
-            6px 6px 0 hsla(219, 100%, 40%, 0.06),
-            -6px -6px 0 hsla(219, 100%, 40%, 0.06);
+        box-shadow: 8px 8px 0 hsla(219, 100%, 50%, 0.1);
+        transform: translateY(-2px);
     }
 
     .card-alt-image {

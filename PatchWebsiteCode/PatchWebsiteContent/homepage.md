@@ -26,9 +26,6 @@
 
 ## Section 2: What Patch Does
 
-**Section label:**
-> How it works
-
 **Headline:**
 > Programmes, community, and mentorship
 
