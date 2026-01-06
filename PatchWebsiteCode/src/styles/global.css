@@ -54,18 +54,13 @@
     --color-orange-500: #e69f00;
     --color-orange-600: #cc8c00;
 
-    /* Brand Accent Colors - Yellow */
-    --color-yellow-200: #fefce8;
-    --color-yellow-300: #f4f83b;
-    --color-yellow-400: #facc15;
-
     /* Orange button shadows */
     --sh-orange-btn: hsl(43, 100%, 35%) 0 -2px 0 0 inset,
                      hsl(43, 100%, 95%) 0 1px 3px 0;
 
-    /* Yellow highlight for testimonials */
-    --highlight-yellow: rgba(244, 248, 59, 0.25);
-    --highlight-yellow-subtle: rgba(244, 248, 59, 0.15);
+    /* Orange highlight for testimonials */
+    --highlight-orange: rgba(255, 177, 0, 0.2);
+    --highlight-orange-subtle: rgba(255, 177, 0, 0.12);
 
     /* Typography scale */
     --text-xs: 0.6875rem;
