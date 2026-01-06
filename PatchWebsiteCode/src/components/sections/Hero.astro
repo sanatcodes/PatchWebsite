@@ -2,12 +2,14 @@
 interface Props {
     headline: string;
     description: string;
+    frameLabel?: string;
+    compact?: boolean;
 }
 
-const { headline, description } = Astro.props;
+const { headline, description, frameLabel = "FIG. 1 — PATCH COMMUNITY", compact = false } = Astro.props;
 ---
 
-<section class="hero-section">
+<section class:list={['hero-section', { 'hero-compact': compact }]}>
     <!-- Blueprint background with texture -->
     <div class="blueprint-bg" aria-hidden="true">
         <div class="blueprint-texture"></div>
@@ -42,7 +44,7 @@ const { headline, description } = Astro.props;
 
         <div class="hero-media">
             <div class="blueprint-frame">
-                <div class="frame-label">FIG. 1 — PATCH COMMUNITY</div>
+                <div class="frame-label">{frameLabel}</div>
                 <slot name="media" />
                 <div class="frame-annotations">
                     <span class="annotation">A</span>
@@ -394,6 +396,36 @@ const { headline, description } = Astro.props;
 
         .frame-label {
             display: none;
+        }
+    }
+
+    /* Compact variant for secondary pages */
+    .hero-compact {
+        padding: 60px 24px 140px;
+    }
+
+    .hero-compact .hero-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero-compact .blueprint-frame {
+        transform: scale(0.9);
+        transform-origin: top center;
+    }
+
+    @media (max-width: 1024px) {
+        .hero-compact {
+            padding: 50px 24px 120px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .hero-compact {
+            padding: 40px 16px 100px;
+        }
+
+        .hero-compact .hero-content h1 {
+            font-size: 2rem;
         }
     }
 </style>
