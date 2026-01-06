@@ -11,26 +11,55 @@ const { logoText = 'Patch' } = Astro.props;
 <header class="header">
     <div class="header-inner">
         <a href="/" class="header-logo">
-            <img src="/PatchLogoBlue.svg" alt="Patch" class="logo-image" />
-            <span class="logo-text">{logoText}</span>
+            <img src="/FullLogoWhite.png" alt="Patch" class="logo-image" />
         </a>
 
         <nav class="header-links">
             <div class="nav-dropdown">
                 <button class="nav-link">
                     Programmes
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                         <path d="m6 9 6 6 6-6"/>
                     </svg>
                 </button>
                 <div class="dropdown-menu">
+                    <span class="corner-bracket corner-tl" aria-hidden="true"></span>
+                    <span class="corner-bracket corner-tr" aria-hidden="true"></span>
+                    <span class="corner-bracket corner-bl" aria-hidden="true"></span>
+                    <span class="corner-bracket corner-br" aria-hidden="true"></span>
                     <a href="#summer-programme">Summer Programme</a>
                     <a href="#tecs">TECS</a>
-                    <a href="#fast-grants">Fast Grants</a>
+                    <a href="/grants">Fast Grants</a>
                     <a href="#sf-fellowship">SF Fellowship</a>
                 </div>
             </div>
-            <a href="#about" class="nav-link">About</a>
+            <a href="https://joinpatch.org/impact-report" target="_blank" rel="noopener noreferrer" class="nav-link nav-link-external">
+                Impact
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" class="external-icon">
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                    <polyline points="15 3 21 3 21 9"/>
+                    <line x1="10" y1="14" x2="21" y2="3"/>
+                </svg>
+                <span class="visually-hidden">(opens in new window)</span>
+            </a>
+            <div class="nav-dropdown">
+                <button class="nav-link">
+                    Policies
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <path d="m6 9 6 6 6-6"/>
+                    </svg>
+                </button>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <span class="corner-bracket corner-tl" aria-hidden="true"></span>
+                    <span class="corner-bracket corner-tr" aria-hidden="true"></span>
+                    <span class="corner-bracket corner-bl" aria-hidden="true"></span>
+                    <span class="corner-bracket corner-br" aria-hidden="true"></span>
+                    <a href="/child-protection-policy">Child Protection Policy</a>
+                    <a href="/child-safeguarding-statement">Child Safeguarding Statement</a>
+                    <a href="/privacy-policy">Privacy Policy</a>
+                    <a href="/cookie-policy">Cookie Policy</a>
+                </div>
+            </div>
         </nav>
 
         <div class="header-nav">
@@ -44,7 +73,7 @@ const { logoText = 'Patch' } = Astro.props;
         position: sticky;
         top: 0;
         z-index: 20;
-        height: 57px;
+        height: 64px;
         background-color: var(--nav-bg-color);
         border-bottom: 1px solid var(--grid-border-color);
         display: flex;
@@ -62,36 +91,81 @@ const { logoText = 'Patch' } = Astro.props;
         align-items: center;
     }
 
+    /* Engineering tick marks on header edges */
+    .header-inner::before,
+    .header-inner::after {
+        content: '';
+        position: absolute;
+        width: 1px;
+        height: 12px;
+        background: var(--color-blue-200);
+        top: 50%;
+        transform: translateY(-50%);
+        opacity: 0.6;
+        transition: all 0.2s ease;
+    }
+
+    .header-inner::before {
+        left: -12px;
+    }
+
+    .header-inner::after {
+        right: -12px;
+    }
+
+    .header:hover .header-inner::before,
+    .header:hover .header-inner::after {
+        background: var(--color-accent-blue);
+        opacity: 1;
+        height: 16px;
+    }
+
     .header-logo {
         display: flex;
         align-items: center;
         gap: 8px;
         text-decoration: none;
+        padding: 4px 8px;
+        margin-left: -8px;
+        border-radius: 4px;
+        transition: background 0.15s ease;
+    }
+
+    .header-logo:hover {
+        background: rgba(7, 81, 207, 0.04);
+    }
+
+    .header-logo:hover .logo-image {
+        filter: invert(1) brightness(0.9);
     }
 
     .logo-image {
-        height: 28px;
+        height: 38px;
         width: auto;
+        filter: invert(1);
+        transition: filter 0.2s ease;
     }
 
     .logo-text {
         font-weight: 600;
         font-size: 1.125rem;
         color: var(--text-primary);
+        display: none;
     }
 
     .header-links {
         display: flex;
         align-items: center;
         gap: 24px;
+        position: relative;
     }
 
     .nav-link {
         display: flex;
         align-items: center;
-        gap: 4px;
+        gap: 5px;
         font-family: 'Courier New', Courier, monospace;
-        font-size: var(--text-sm);
+        font-size: 0.9375rem;
         font-weight: 500;
         letter-spacing: 0.05em;
         color: var(--text-secondary);
@@ -99,11 +173,42 @@ const { logoText = 'Patch' } = Astro.props;
         background: none;
         border: none;
         cursor: pointer;
-        padding: 8px 0;
+        padding: 10px 14px;
+        border-radius: 4px;
+        transition: all 0.15s ease;
     }
 
     .nav-link:hover {
         color: var(--text-primary);
+        background: rgba(7, 81, 207, 0.04);
+    }
+
+    .nav-link-external {
+        position: relative;
+    }
+
+    .external-icon {
+        width: 11px;
+        height: 11px;
+        opacity: 0.6;
+        transition: opacity 0.15s ease, transform 0.15s ease;
+    }
+
+    .nav-link-external:hover .external-icon {
+        opacity: 1;
+        transform: translateX(1px) translateY(-1px);
+    }
+
+    .visually-hidden {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border-width: 0;
     }
 
     .nav-dropdown {
@@ -114,16 +219,19 @@ const { logoText = 'Patch' } = Astro.props;
         position: absolute;
         top: 100%;
         left: 0;
-        min-width: 180px;
+        min-width: 200px;
+        margin-top: 4px;
         padding: 8px 0;
         background: white;
         border: 1px solid var(--default-border-color);
-        border-radius: 4px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        border-radius: 6px;
+        box-shadow:
+            0 4px 12px rgba(0, 0, 0, 0.08),
+            0 2px 4px rgba(0, 0, 0, 0.04);
         opacity: 0;
         visibility: hidden;
         transform: translateY(4px);
-        transition: all 0.15s ease;
+        transition: all 0.2s ease;
         z-index: 100;
     }
 
@@ -133,17 +241,107 @@ const { logoText = 'Patch' } = Astro.props;
         transform: translateY(0);
     }
 
+    .dropdown-menu-right {
+        left: auto;
+        right: 0;
+        min-width: 240px;
+    }
+
     .dropdown-menu a {
         display: block;
-        padding: 8px 16px;
+        padding: 10px 16px;
         font-size: var(--text-sm);
         color: var(--text-secondary);
         text-decoration: none;
+        transition: all 0.15s ease;
+        position: relative;
+    }
+
+    .dropdown-menu a::before {
+        content: '';
+        position: absolute;
+        left: 8px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 0;
+        height: 2px;
+        background: var(--color-accent-blue);
+        transition: width 0.2s ease;
     }
 
     .dropdown-menu a:hover {
         background: var(--color-blue-50);
         color: var(--color-accent-blue);
+        padding-left: 24px;
+    }
+
+    .dropdown-menu a:hover::before {
+        width: 8px;
+    }
+
+    /* Engineering-style corner brackets */
+    .corner-bracket {
+        position: absolute;
+        width: 8px;
+        height: 8px;
+        pointer-events: none;
+        z-index: 1;
+    }
+
+    .corner-bracket::before,
+    .corner-bracket::after {
+        content: '';
+        position: absolute;
+        background: var(--color-blue-200);
+        transition: background 0.2s ease;
+    }
+
+    .corner-bracket::before {
+        width: 1px;
+        height: 8px;
+    }
+
+    .corner-bracket::after {
+        width: 8px;
+        height: 1px;
+    }
+
+    /* Top-left corner ┌ */
+    .corner-tl {
+        top: 4px;
+        left: 4px;
+    }
+    .corner-tl::before { top: 0; left: 0; }
+    .corner-tl::after { top: 0; left: 0; }
+
+    /* Top-right corner ┐ */
+    .corner-tr {
+        top: 4px;
+        right: 4px;
+    }
+    .corner-tr::before { top: 0; right: 0; }
+    .corner-tr::after { top: 0; right: 0; }
+
+    /* Bottom-left corner └ */
+    .corner-bl {
+        bottom: 4px;
+        left: 4px;
+    }
+    .corner-bl::before { bottom: 0; left: 0; }
+    .corner-bl::after { bottom: 0; left: 0; }
+
+    /* Bottom-right corner ┘ */
+    .corner-br {
+        bottom: 4px;
+        right: 4px;
+    }
+    .corner-br::before { bottom: 0; right: 0; }
+    .corner-br::after { bottom: 0; right: 0; }
+
+    /* Corner brackets animate on dropdown hover */
+    .nav-dropdown:hover .corner-bracket::before,
+    .nav-dropdown:hover .corner-bracket::after {
+        background: var(--color-accent-blue);
     }
 
     .header-nav {
@@ -164,6 +362,13 @@ const { logoText = 'Patch' } = Astro.props;
         background: white;
         z-index: 10;
         bottom: -4.5px;
+        transition: all 0.2s ease;
+    }
+
+    .header:hover::before,
+    .header:hover::after {
+        border-color: var(--color-accent-blue);
+        transform: rotate(45deg) scale(1.15);
     }
 
     .header::before {
@@ -180,6 +385,15 @@ const { logoText = 'Patch' } = Astro.props;
         }
 
         .logo-text {
+            display: none;
+        }
+
+        .logo-image {
+            height: 28px;
+        }
+
+        .header-inner::before,
+        .header-inner::after {
             display: none;
         }
     }
