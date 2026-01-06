@@ -11,17 +11,12 @@ import PhotoCollage from '../components/ui/PhotoCollage.astro';
 // Card Components
 import CardAlt from '../components/cards/CardAlt.astro';
 import SummerProgrammeCard from '../components/cards/SummerProgrammeCard.astro';
-import InlineTestimonial from '../components/cards/InlineTestimonial.astro';
-import LogbookTestimonial from '../components/cards/LogbookTestimonial.astro';
-import TestimonialCard from '../components/cards/TestimonialCard.astro';
 
 // Section Components
 import Header from '../components/sections/Header.astro';
 import Hero from '../components/sections/Hero.astro';
 import FieldNotesSection from '../components/sections/FieldNotesSection.astro';
-import CardGridSection from '../components/sections/CardGridSection.astro';
 import LetterSection from '../components/sections/LetterSection.astro';
-import FeaturedTestimonial from '../components/sections/FeaturedTestimonial.astro';
 import MentorsSection from '../components/sections/MentorsSection.astro';
 import SupportersSection from '../components/sections/SupportersSection.astro';
 import ApplySection from '../components/sections/ApplySection.astro';
@@ -42,7 +37,7 @@ const mentors = [
 // Supporter data
 const supporters = [
 	{ name: "Stripe", logoSrc: "/PartnerLogos/stripe-logo-black-and-white.png" },
-	{ name: "OpenAI", logoSrc: "/PartnerLogos/Open-AI-White-Logo-PNG.jpg" },
+	{ name: "OpenAI", logoSrc: "/PartnerLogos/OpenAILogo.png" },
 	{ name: "NDRC", logoSrc: "/PartnerLogos/NDRC_Logo_White-01.png" },
 	{ name: "Abbey Capital", logoSrc: "/PartnerLogos/AC_Old_New_Logo_Artboard-2.png" },
 	{ name: "Dogpatch Labs", logoSrc: "/PartnerLogos/DogpatchLabsLogo.png" },
@@ -192,7 +187,7 @@ const heroCollage = [
 				<CardAlt
 					title="Fast Grants"
 					description="€200-€1,000 grants for 13-19 year olds to build hardware, attend conferences, or start events. Quick decisions, no bureaucracy."
-					href="#fast-grants"
+					href="/grants"
 					figureNum="FIG. 3"
 					>
 					<img slot="image" src="/GrantsTomasMarkey.JPG" alt="Grant recipient project" />
@@ -210,7 +205,7 @@ const heroCollage = [
 		</div>
 	</section>
 
-	<Divider variant="jittered" />
+	<Divider />
 
 	<!-- ============================================
 		 SECTION 4: ALUMNI-LED INITIATIVES
@@ -426,7 +421,7 @@ const heroCollage = [
 
 	</section>
 
-	<Divider variant="jittered" />
+	<Divider/>
 
 	<!-- ============================================
 		 SECTION 6B: FIELD NOTES (TESTIMONIALS)
@@ -434,18 +429,10 @@ const heroCollage = [
 	<FieldNotesSection
 		testimonials={[
 			{
-				quote: `<span class="highlight">Growing up in rural Kerry, I'd never had anyone to talk to about genetics and AI.</span> During Patch, I met people who cared about the same things. I didn't feel alone anymore.`,
-				authorName: "Conor Casey",
-				authorTitle: "Patch 2020",
-				photoSrc: "/AlumniPhotos/ColmRedBull.png",
-				date: "15/08/2020",
-				entryNum: "#47"
-			},
-			{
 				quote: `Of everything interesting that's ever happened in my life, a ridiculous fraction has been downstream of Patch. <span class="highlight">The belief that 'you can just do things' never left me.</span>`,
 				authorName: "Sam Enright",
 				authorTitle: "Patch 2019, Progress Ireland cofounder",
-				photoSrc: "/AlumniPhotos/AidanWithRocket.jpg",
+				photoSrc: "/AlumniPhotos/SamEnright.jpg",
 				date: "12/03/2022",
 				entryNum: "#103"
 			},
@@ -453,8 +440,16 @@ const heroCollage = [
 				quote: `<span class="highlight">Patch completely changed how I think about ambition and impact.</span> Being surrounded by people building boldly pushed me to dream bigger.`,
 				authorName: "Diana Hrisovescu",
 				authorTitle: "Patch 2021,O'Shaughnessy Ventures Fellow",
+				photoSrc: "/AlumniPhotos/DianaH.jpg",
 				date: "28/07/2023",
 				entryNum: "#156"
+			},
+			{
+				quote: `<span class="highlight">Growing up in rural Kerry, I'd never had anyone to talk to about genetics and AI.</span> During Patch, I met people who cared about the same things. I didn't feel alone anymore.`,
+				authorName: "Conor Casey",
+				authorTitle: "Patch 2020",
+				date: "15/08/2020",
+				entryNum: "#47"
 			}
 		]}
 	/>
@@ -477,7 +472,7 @@ const heroCollage = [
 		 SECTION 8: FUNDING & SUPPORTERS
 		 ============================================ -->
 	<SupportersSection
-		label="Thanks to"
+		label="Thanks to our partners"
 		title="Everything is covered"
 		subtitle="Accommodation. Meals. Expenses. Stipends where needed. Thanks to our supporters, access is based on potential, not background."
 		supporters={supporters}
