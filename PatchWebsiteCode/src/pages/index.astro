@@ -275,6 +275,39 @@ const heroCollage = [
 		</div>
 	</section>
 
+	<Divider/>
+
+	<!-- ============================================
+		 SECTION 6B: FIELD NOTES (TESTIMONIALS)
+		 ============================================ -->
+	<FieldNotesSection
+		testimonials={[
+			{
+				quote: `Of everything interesting that's ever happened in my life, a ridiculous fraction has been downstream of Patch. <span class="highlight">The belief that 'you can just do things' never left me.</span>`,
+				authorName: "Sam Enright",
+				authorTitle: "Patch 2019, Progress Ireland cofounder",
+				photoSrc: "/AlumniPhotos/SamEnright.jpg",
+				date: "12/03/2022",
+				entryNum: "#103"
+			},
+			{
+				quote: `<span class="highlight">Patch completely changed how I think about ambition and impact.</span> Being surrounded by people building boldly pushed me to dream bigger.`,
+				authorName: "Diana Hrisovescu",
+				authorTitle: "Patch 2021,O'Shaughnessy Ventures Fellow",
+				photoSrc: "/AlumniPhotos/DianaH.jpg",
+				date: "28/07/2023",
+				entryNum: "#156"
+			},
+			{
+				quote: `<span class="highlight">Growing up in rural Kerry, I'd never had anyone to talk to about genetics and AI.</span> During Patch, I met people who cared about the same things. I didn't feel alone anymore.`,
+				authorName: "Conor Casey",
+				authorTitle: "Patch 2020",
+				date: "15/08/2020",
+				entryNum: "#47"
+			}
+		]}
+	/>
+
 	<Divider />
 
 	<!-- ============================================
@@ -381,39 +414,6 @@ const heroCollage = [
 
 	</section>
 
-	<Divider/>
-
-	<!-- ============================================
-		 SECTION 6B: FIELD NOTES (TESTIMONIALS)
-		 ============================================ -->
-	<FieldNotesSection
-		testimonials={[
-			{
-				quote: `Of everything interesting that's ever happened in my life, a ridiculous fraction has been downstream of Patch. <span class="highlight">The belief that 'you can just do things' never left me.</span>`,
-				authorName: "Sam Enright",
-				authorTitle: "Patch 2019, Progress Ireland cofounder",
-				photoSrc: "/AlumniPhotos/SamEnright.jpg",
-				date: "12/03/2022",
-				entryNum: "#103"
-			},
-			{
-				quote: `<span class="highlight">Patch completely changed how I think about ambition and impact.</span> Being surrounded by people building boldly pushed me to dream bigger.`,
-				authorName: "Diana Hrisovescu",
-				authorTitle: "Patch 2021,O'Shaughnessy Ventures Fellow",
-				photoSrc: "/AlumniPhotos/DianaH.jpg",
-				date: "28/07/2023",
-				entryNum: "#156"
-			},
-			{
-				quote: `<span class="highlight">Growing up in rural Kerry, I'd never had anyone to talk to about genetics and AI.</span> During Patch, I met people who cared about the same things. I didn't feel alone anymore.`,
-				authorName: "Conor Casey",
-				authorTitle: "Patch 2020",
-				date: "15/08/2020",
-				entryNum: "#47"
-			}
-		]}
-	/>
-
 	<Divider />
 
 	<!-- ============================================
@@ -446,8 +446,7 @@ const heroCollage = [
 	<ApplySection
 		title="Summer Accelerator Applications Open"
 		description="If you'd like to build something great over the summer, meet an amazing group of peers, and learn from Ireland's top founders — or you know someone who would — this is where to start."
-		primaryCta={{ text: "Apply Now", href: "#" }}
-		secondaryCta={{ text: "Share with someone", href: "#" }}
+		primaryCta={{ text: "Apply Now", href: "https://apply.joinpatch.org/" }}
 	/>
 
 
@@ -923,17 +922,41 @@ const heroCollage = [
 	/* Editorial layout - Two column text + photos */
 	.editorial-layout {
 		display: grid;
-		grid-template-columns: 1fr 320px;
+		grid-template-columns: 1fr 380px;
 		gap: 48px;
-		align-items: start;
+		align-items: stretch;
 	}
 
 	.editorial-text {
-		padding: 24px;
-		background: #fff;
-		border: 1px solid #e0e0e0;
-		box-shadow: 2px 3px 8px rgba(0,0,0,0.05);
-		transform: rotate(-0.2deg);
+		position: relative;
+		padding-left: 24px;
+		border-left: 1px solid rgba(190, 219, 255, 0.5);
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+	}
+
+	/* Diamond accents at top and bottom of the line */
+	.editorial-text::before,
+	.editorial-text::after {
+		content: '';
+		position: absolute;
+		width: 8px;
+		height: 8px;
+		background: var(--color-cream-100, #faf8f5);
+		border: 1px solid var(--color-blue-200);
+		transform: rotate(45deg);
+		border-radius: 1px;
+		left: -4.5px;
+		z-index: 10;
+	}
+
+	.editorial-text::before {
+		top: -4px;
+	}
+
+	.editorial-text::after {
+		bottom: -4px;
 	}
 
 	.editorial-text p {
@@ -950,8 +973,7 @@ const heroCollage = [
 	.editorial-photos {
 		display: flex;
 		flex-direction: column;
-		gap: 24px;
-		padding-top: 8px;
+		gap: 20px;
 	}
 
 	.editorial-photo {
@@ -991,7 +1013,7 @@ const heroCollage = [
 		}
 
 		.editorial-layout {
-			grid-template-columns: 1fr 280px;
+			grid-template-columns: 1fr 320px;
 			gap: 32px;
 		}
 	}
@@ -1023,7 +1045,29 @@ const heroCollage = [
 		}
 
 		.editorial-photo {
-			max-width: 200px;
+			max-width: 220px;
+		}
+
+		.editorial-text {
+			border-left: none;
+			padding-left: 0;
+			padding-bottom: 24px;
+			border-bottom: 1px solid rgba(190, 219, 255, 0.5);
+		}
+
+		.editorial-text::before,
+		.editorial-text::after {
+			top: auto;
+			bottom: -4.5px;
+			left: auto;
+		}
+
+		.editorial-text::before {
+			left: -4px;
+		}
+
+		.editorial-text::after {
+			right: -4px;
 		}
 
 		.company-card {
@@ -1062,7 +1106,7 @@ const heroCollage = [
 		}
 
 		.editorial-photo {
-			max-width: 280px;
+			max-width: 300px;
 		}
 	}
 
