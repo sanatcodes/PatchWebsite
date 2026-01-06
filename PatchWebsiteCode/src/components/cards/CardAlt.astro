@@ -2,16 +2,20 @@
 interface Props {
     title: string;
     description: string;
+    figureNum?: string;
     featured?: boolean;
     gridOverlay?: boolean;
     href?: string;
     class?: string;
 }
 
-const { title, description, featured = false, gridOverlay = false, href, class: className } = Astro.props;
+const { title, description, figureNum, featured = false, gridOverlay = false, href, class: className } = Astro.props;
 ---
 
 <div class:list={['card-alt', { featured, 'with-grid-overlay': gridOverlay }, className]}>
+    <!-- Figure number label -->
+    {figureNum && <div class="fig-num">{figureNum}</div>}
+
     <div class="card-alt-image">
         <slot name="image">
             [Image]
@@ -22,41 +26,59 @@ const { title, description, featured = false, gridOverlay = false, href, class: 
         <h3>{title}</h3>
         <p>{description}</p>
         {href && (
-            <a href={href} class="card-link">Learn more &rarr;</a>
+            <a href={href} class="card-link">DETAILS →</a>
         )}
     </div>
+
+    <!-- Corner ticks -->
+    <div class="tick tick-tl"></div>
+    <div class="tick tick-tr"></div>
 </div>
 
 <style>
     .card-alt {
         position: relative;
-        padding: 10px;
-        border: 1px solid var(--default-border-color);
-        border-radius: 4px;
-        background-color: rgba(255, 255, 255, 0.6);
-        box-shadow: 6px 6px 0 hsla(219, 93%, 42%, 0.06);
+        padding: 12px;
+        border: 1.5px solid rgba(255, 255, 255, 0.4);
+        border-radius: 0;
+        background: rgba(255, 255, 255, 0.08);
         transition: all 0.2s ease;
-        overflow: hidden;
+        overflow: visible;
     }
 
     .card-alt:hover {
-        border-color: var(--color-blue-300);
-        box-shadow: 8px 8px 0 hsla(219, 100%, 50%, 0.1);
-        transform: translateY(-2px);
+        background: rgba(255, 255, 255, 0.12);
+        border-color: rgba(255, 255, 255, 0.6);
+    }
+
+    /* Figure number */
+    .fig-num {
+        position: absolute;
+        top: -10px;
+        right: 12px;
+        padding: 2px 10px;
+        background: #2c5282;
+        color: rgba(255, 255, 255, 0.95);
+        font-family: 'Courier New', monospace;
+        font-size: 0.6rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        z-index: 2;
     }
 
     .card-alt-image {
+        position: relative;
         aspect-ratio: 16/9;
-        background: var(--color-cream-50);
-        border: 1px solid var(--default-border-color);
-        border-radius: 2px;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1.5px solid rgba(255, 255, 255, 0.4);
         margin-bottom: 12px;
         display: flex;
         align-items: center;
         justify-content: center;
-        color: #98a0ae;
-        font-size: 0.875rem;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        color: rgba(255, 255, 255, 0.4);
+        font-size: 0.8rem;
+        font-family: 'Courier New', monospace;
         overflow: hidden;
     }
 
@@ -67,33 +89,80 @@ const { title, description, featured = false, gridOverlay = false, href, class: 
     }
 
     .card-alt-content {
-        padding: 8px 4px;
+        position: relative;
+        padding: 4px 0;
+        z-index: 1;
     }
 
     .card-alt-content h3 {
-        font-size: 1rem;
-        font-weight: 500;
-        color: var(--text-primary);
-        margin-bottom: 4px;
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: #fff;
+        margin-bottom: 8px;
+        font-family: 'Courier New', monospace;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
     }
 
     .card-alt-content p {
-        font-size: 0.8125rem;
-        color: var(--text-secondary);
+        font-size: 0.8rem;
+        color: rgba(255, 255, 255, 0.75);
+        line-height: 1.5;
     }
 
     .card-link {
         display: inline-block;
-        margin-top: 8px;
-        font-size: 0.8125rem;
-        color: var(--color-accent-blue);
+        margin-top: 12px;
+        font-size: 0.7rem;
+        color: rgba(255, 255, 255, 0.9);
         text-decoration: none;
-        font-weight: 500;
+        font-weight: 600;
+        font-family: 'Courier New', monospace;
+        letter-spacing: 0.06em;
+        padding: 6px 12px;
+        border: 1.5px solid rgba(255, 255, 255, 0.5);
+        background: transparent;
+        transition: all 0.15s ease;
     }
 
     .card-link:hover {
-        text-decoration: underline;
+        background: rgba(255, 255, 255, 0.15);
+        border-color: rgba(255, 255, 255, 0.8);
     }
+
+    /* Corner ticks */
+    .tick {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        pointer-events: none;
+        z-index: 2;
+    }
+
+    .tick::before,
+    .tick::after {
+        content: '';
+        position: absolute;
+        background: rgba(255, 255, 255, 0.5);
+    }
+
+    .tick::before {
+        width: 10px;
+        height: 1.5px;
+    }
+
+    .tick::after {
+        width: 1.5px;
+        height: 10px;
+    }
+
+    .tick-tl { top: 4px; left: 4px; }
+    .tick-tl::before { top: 0; left: 0; }
+    .tick-tl::after { top: 0; left: 0; }
+
+    .tick-tr { top: 4px; right: 4px; }
+    .tick-tr::before { top: 0; right: 0; }
+    .tick-tr::after { top: 0; right: 0; }
 
     /* Featured variant - 2x prominence */
     .card-alt.featured {
@@ -106,33 +175,22 @@ const { title, description, featured = false, gridOverlay = false, href, class: 
     }
 
     .card-alt.featured .card-alt-content h3 {
-        font-size: 1.25rem;
+        font-size: 1.1rem;
     }
 
     .card-alt.featured .card-alt-content p {
-        font-size: 0.9375rem;
+        font-size: 0.875rem;
     }
 
     /* Grid overlay on images */
     .grid-overlay {
         position: absolute;
         inset: 0;
-        background: repeating-linear-gradient(
-            90deg,
-            transparent,
-            transparent 11px,
-            rgba(190, 219, 255, 0.1) 11px,
-            rgba(190, 219, 255, 0.1) 12px
-        ),
-        repeating-linear-gradient(
-            0deg,
-            transparent,
-            transparent 11px,
-            rgba(190, 219, 255, 0.1) 11px,
-            rgba(190, 219, 255, 0.1) 12px
-        );
+        background-image:
+            linear-gradient(to right, rgba(255, 255, 255, 0.15) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(255, 255, 255, 0.15) 1px, transparent 1px);
+        background-size: 16px 16px;
         pointer-events: none;
-        opacity: 0.8;
     }
 
     /* Make image container relative for overlay positioning */
@@ -148,6 +206,10 @@ const { title, description, featured = false, gridOverlay = false, href, class: 
 
         .card-alt.featured .card-alt-image {
             aspect-ratio: 16/9;
+        }
+
+        .tick {
+            display: none;
         }
     }
 

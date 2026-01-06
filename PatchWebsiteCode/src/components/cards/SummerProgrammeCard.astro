@@ -11,73 +11,127 @@ const { title, description, images = [], href, class: className } = Astro.props;
 ---
 
 <div class:list={['summer-programme-card', className]}>
-    <div class="summer-programme-images">
-        {images.length > 0 ? (
-            images.map((image, index) => (
-                <div class={`image-slot image-${index + 1}`}>
-                    <img src={image.src} alt={image.alt} loading="lazy" />
+    <!-- Main figure label -->
+    <div class="figure-label">FIG. 1 — FLAGSHIP PROGRAMME</div>
+
+    <div class="card-inner">
+        <div class="summer-programme-images">
+            <div class="images-frame">
+                {images.length > 0 ? (
+                    images.map((image, index) => (
+                        <div class={`image-slot image-${index + 1}`}>
+                            <img src={image.src} alt={image.alt} loading="lazy" />
+                            <span class="image-label">{String.fromCharCode(65 + index)}</span>
+                        </div>
+                    ))
+                ) : (
+                    <>
+                        <div class="image-slot image-1">[Stage Photo]<span class="image-label">A</span></div>
+                        <div class="image-slot image-2">[Group Photo]<span class="image-label">B</span></div>
+                        <div class="image-slot image-3">[Working Photo]<span class="image-label">C</span></div>
+                    </>
+                )}
+            </div>
+            <!-- Dimension lines -->
+            <div class="dimension-line horizontal">
+                <span class="dimension-text">7 WEEKS</span>
+            </div>
+        </div>
+
+        <div class="summer-programme-content">
+            <div class="content-inner">
+                <h3>{title}</h3>
+                <p>{description}</p>
+                {href && (
+                    <a href={href} class="summer-programme-link">
+                        LEARN MORE →
+                    </a>
+                )}
+            </div>
+            <!-- Spec list -->
+            <div class="spec-list">
+                <div class="spec-item">
+                    <span class="spec-label">CAPACITY</span>
+                    <span class="spec-value">30</span>
                 </div>
-            ))
-        ) : (
-            <>
-                <div class="image-slot image-1">[Stage Photo]</div>
-                <div class="image-slot image-2">[Group Photo]</div>
-                <div class="image-slot image-3">[Working Photo]</div>
-            </>
-        )}
+                <div class="spec-item">
+                    <span class="spec-label">COST</span>
+                    <span class="spec-value">€0</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">STATUS</span>
+                    <span class="spec-value highlight">OPEN</span>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="summer-programme-content">
-        <h3>{title}</h3>
-        <p>{description}</p>
-        {href && (
-            <a href={href} class="summer-programme-link">
-                Learn more &rarr;
-            </a>
-        )}
-    </div>
+    <!-- Corner marks -->
+    <div class="corner tl"></div>
+    <div class="corner tr"></div>
+    <div class="corner bl"></div>
+    <div class="corner br"></div>
 </div>
 
 <style>
     .summer-programme-card {
-        grid-column: span 2;
+        grid-column: 1 / -1;
+        position: relative;
+        padding: 24px;
+        padding-top: 32px;
+        background: transparent;
+        border: 2px solid rgba(255, 255, 255, 0.5);
+        overflow: visible;
+    }
+
+    /* Figure label */
+    .figure-label {
+        position: absolute;
+        top: -12px;
+        left: 20px;
+        padding: 4px 12px;
+        background: #2c5282;
+        color: rgba(255, 255, 255, 0.95);
+        font-family: 'Courier New', monospace;
+        font-size: 0.7rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .card-inner {
+        position: relative;
         display: grid;
-        grid-template-columns: 1.2fr 1fr;
-        gap: 16px;
-        padding: 12px;
-        background: linear-gradient(135deg,
-            rgba(255, 247, 237, 0.5),
-            rgba(255, 255, 255, 0.6)
-        );
-        border: 2px solid rgba(255, 177, 0, 0.3);
-        border-radius: 4px;
-        box-shadow: 8px 8px 0 rgba(255, 177, 0, 0.08);
-        transition: all 0.2s ease;
+        grid-template-columns: 1.3fr 1fr;
+        gap: 24px;
+        z-index: 1;
     }
 
-    .summer-programme-card:hover {
-        border-color: var(--color-orange-400);
-        box-shadow: 10px 10px 0 rgba(255, 177, 0, 0.15);
-        transform: translateY(-2px);
-    }
-
-    /* Photo collage layout */
+    /* Images section */
     .summer-programme-images {
+        position: relative;
+        padding-bottom: 28px;
+    }
+
+    .images-frame {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        grid-template-rows: 1fr 1fr;
+        grid-template-rows: auto auto;
         gap: 8px;
+        padding: 8px;
+        border: 2px solid rgba(255, 255, 255, 0.5);
+        background: rgba(255, 255, 255, 0.1);
     }
 
     .image-slot {
-        background: var(--color-cream-50);
-        border: 1px solid var(--default-border-color);
-        border-radius: 2px;
+        position: relative;
+        background: rgba(255, 255, 255, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.3);
         overflow: hidden;
         display: flex;
         align-items: center;
         justify-content: center;
-        color: #98a0ae;
+        color: rgba(255, 255, 255, 0.5);
         font-size: 0.75rem;
     }
 
@@ -87,10 +141,27 @@ const { title, description, images = [], href, class: className } = Astro.props;
         object-fit: cover;
     }
 
-    /* First image spans both columns */
+    .image-label {
+        position: absolute;
+        top: 6px;
+        left: 6px;
+        width: 22px;
+        height: 22px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(44, 82, 130, 0.95);
+        color: #fff;
+        font-family: 'Courier New', monospace;
+        font-size: 0.7rem;
+        font-weight: 700;
+        border-radius: 50%;
+        border: 1.5px solid rgba(255, 255, 255, 0.5);
+    }
+
     .image-slot.image-1 {
         grid-column: span 2;
-        aspect-ratio: 2.5/1;
+        aspect-ratio: 2.2/1;
     }
 
     .image-slot.image-2,
@@ -98,55 +169,200 @@ const { title, description, images = [], href, class: className } = Astro.props;
         aspect-ratio: 4/3;
     }
 
+    /* Dimension line */
+    .dimension-line {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .dimension-line.horizontal {
+        bottom: 4px;
+        left: 8px;
+        right: 8px;
+        height: 16px;
+    }
+
+    .dimension-line.horizontal::before,
+    .dimension-line.horizontal::after {
+        content: '';
+        flex: 1;
+        height: 1.5px;
+        background: rgba(255, 255, 255, 0.6);
+    }
+
+    .dimension-line.horizontal::before {
+        margin-right: 12px;
+    }
+
+    .dimension-line.horizontal::after {
+        margin-left: 12px;
+    }
+
+    /* Arrowheads */
+    .dimension-line::before {
+        clip-path: polygon(0 50%, 8px 0, 8px 100%);
+        padding-left: 8px;
+    }
+
+    .dimension-line::after {
+        clip-path: polygon(100% 50%, calc(100% - 8px) 0, calc(100% - 8px) 100%);
+        padding-right: 8px;
+    }
+
+    .dimension-text {
+        font-family: 'Courier New', monospace;
+        font-size: 0.7rem;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.9);
+        white-space: nowrap;
+        letter-spacing: 0.08em;
+        padding: 2px 8px;
+        background: #4a7fbf;
+    }
+
+    /* Content section */
     .summer-programme-content {
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        padding: 4px 8px;
+        justify-content: space-between;
+        padding: 8px 0;
     }
 
-    .summer-programme-content h3 {
-        font-size: 1.25rem;
+    .content-inner h3 {
+        font-size: 1.5rem;
         font-weight: 500;
         font-family: Georgia, 'Times New Roman', serif;
-        color: var(--text-primary);
-        margin-bottom: 8px;
+        color: #fff;
+        margin-bottom: 12px;
         letter-spacing: -0.01em;
     }
 
-    .summer-programme-content p {
-        font-size: 0.875rem;
-        line-height: 1.5;
-        color: var(--text-secondary);
-        margin-bottom: 12px;
+    .content-inner p {
+        font-size: 0.9rem;
+        line-height: 1.6;
+        color: rgba(255, 255, 255, 0.8);
+        margin-bottom: 16px;
     }
 
     .summer-programme-link {
         display: inline-flex;
         align-items: center;
         gap: 4px;
-        font-size: 0.9375rem;
-        font-weight: 500;
-        color: var(--color-orange-500);
+        padding: 8px 16px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        font-family: 'Courier New', monospace;
+        letter-spacing: 0.05em;
+        color: #4a7fbf;
+        background: rgba(255, 255, 255, 0.95);
         text-decoration: none;
-        transition: color 0.1s ease;
+        border: 2px solid rgba(255, 255, 255, 0.8);
+        transition: all 0.15s ease;
     }
 
     .summer-programme-link:hover {
-        color: var(--color-orange-600);
-        text-decoration: underline;
+        background: #fff;
+        color: #2c5282;
     }
 
-    /* Responsive: single column on tablet/mobile */
-    @media (max-width: 768px) {
-        .summer-programme-card {
-            grid-column: span 1;
+    /* Spec list */
+    .spec-list {
+        display: flex;
+        gap: 20px;
+        padding-top: 16px;
+        border-top: 1.5px dashed rgba(255, 255, 255, 0.3);
+        margin-top: auto;
+    }
+
+    .spec-item {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .spec-label {
+        font-family: 'Courier New', monospace;
+        font-size: 0.6rem;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.6);
+        letter-spacing: 0.1em;
+    }
+
+    .spec-value {
+        font-family: 'Courier New', monospace;
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: #fff;
+    }
+
+    .spec-value.highlight {
+        color: #68d391;
+    }
+
+    /* Corner marks */
+    .corner {
+        position: absolute;
+        width: 16px;
+        height: 16px;
+        pointer-events: none;
+        z-index: 2;
+    }
+
+    .corner::before,
+    .corner::after {
+        content: '';
+        position: absolute;
+        background: rgba(255, 255, 255, 0.6);
+    }
+
+    .corner::before {
+        width: 16px;
+        height: 2px;
+    }
+
+    .corner::after {
+        width: 2px;
+        height: 16px;
+    }
+
+    .corner.tl { top: 8px; left: 8px; }
+    .corner.tl::before { top: 0; left: 0; }
+    .corner.tl::after { top: 0; left: 0; }
+
+    .corner.tr { top: 8px; right: 8px; }
+    .corner.tr::before { top: 0; right: 0; }
+    .corner.tr::after { top: 0; right: 0; }
+
+    .corner.bl { bottom: 8px; left: 8px; }
+    .corner.bl::before { bottom: 0; left: 0; }
+    .corner.bl::after { bottom: 0; left: 0; }
+
+    .corner.br { bottom: 8px; right: 8px; }
+    .corner.br::before { bottom: 0; right: 0; }
+    .corner.br::after { bottom: 0; right: 0; }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+        .card-inner {
             grid-template-columns: 1fr;
+            gap: 20px;
         }
 
         .summer-programme-images {
+            margin-bottom: 8px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .summer-programme-card {
+            padding: 16px;
+            padding-top: 28px;
+        }
+
+        .images-frame {
             grid-template-columns: 1fr;
-            grid-template-rows: auto;
         }
 
         .image-slot.image-1 {
@@ -156,6 +372,29 @@ const { title, description, images = [], href, class: className } = Astro.props;
 
         .image-slot.image-2,
         .image-slot.image-3 {
+            display: none;
+        }
+
+        .dimension-line {
+            display: none;
+        }
+
+        .summer-programme-images {
+            padding-bottom: 0;
+        }
+
+        .spec-list {
+            flex-wrap: wrap;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .figure-label {
+            font-size: 0.6rem;
+            padding: 3px 8px;
+        }
+
+        .corner {
             display: none;
         }
     }

@@ -121,44 +121,58 @@ const heroCollage = [
 			title="Multiple paths into Patch"
 		/>
 
-		<div class="programmes-grid">
-			<SummerProgrammeCard
-				title="Summer Programme"
-				description="Seven weeks. 30 people. The flagship entry point into Patch. Teams build startups, research projects, or technology. Everything covered: accommodation, meals, expenses."
-				href="#summer-programme"
-				images={[
-					{ src: "/example1.jpg", alt: "Team presenting on stage" },
-					{ src: "/Example2.jpg", alt: "Group photo" },
-					{ src: "/Example3.jpg", alt: "People working on projects" }
-				]}
-			/>
+		<div class="programmes-wrapper">
+			<!-- Blueprint drawing title block -->
+			<div class="drawing-title-block">
+				<div class="title-block-content">
+					<span class="drawing-number">DWG-001</span>
+					<span class="drawing-title">PATCH PROGRAMMES — OVERVIEW</span>
+					<span class="drawing-rev">REV. 2025</span>
+				</div>
+			</div>
 
-			<CardAlt
-				title="TECS"
-				description="A one-month competition for TY-6th year students to turn ideas into working prototypes. Run with Immersive Software Engineering at UL."
-				href="#tecs"
-				gridOverlay={true}
-			>
-				<div slot="image" class="photo-placeholder">[Photo: TECS competition]</div>
-			</CardAlt>
+			<div class="programmes-grid">
+				<SummerProgrammeCard
+					title="Summer Programme"
+					description="Seven weeks. 30 people. The flagship entry point into Patch. Teams build startups, research projects, or technology. Everything covered: accommodation, meals, expenses."
+					href="#summer-programme"
+					images={[
+						{ src: "/example1.jpg", alt: "Team presenting on stage" },
+						{ src: "/Example2.jpg", alt: "Group photo" },
+						{ src: "/Example3.jpg", alt: "People working on projects" }
+					]}
+				/>
 
-			<CardAlt
-				title="Fast Grants"
-				description="€200-€1,000 grants for 13-19 year olds to build hardware, attend conferences, or start events. Quick decisions, no bureaucracy."
-				href="#fast-grants"
-				gridOverlay={true}
-			>
-				<div slot="image" class="photo-placeholder">[Photo: Grant recipient project]</div>
-			</CardAlt>
+				<CardAlt
+					title="TECS"
+					description="A one-month competition for TY-6th year students to turn ideas into working prototypes. Run with Immersive Software Engineering at UL."
+					href="#tecs"
+					figureNum="FIG. 2"
+					gridOverlay={true}
+				>
+					<div slot="image" class="photo-placeholder">[Photo: TECS competition]</div>
+				</CardAlt>
 
-			<CardAlt
-				title="SF Fellowship"
-				description="10 days in San Francisco. Inside startups, meeting founders, seeing what's possible."
-				href="#sf-fellowship"
-				gridOverlay={true}
-			>
-				<img slot="image" src="/SFFellowshipGoldenGateGroup.JPG" alt="SF Fellowship group at Golden Gate Bridge" />
-			</CardAlt>
+				<CardAlt
+					title="Fast Grants"
+					description="€200-€1,000 grants for 13-19 year olds to build hardware, attend conferences, or start events. Quick decisions, no bureaucracy."
+					href="#fast-grants"
+					figureNum="FIG. 3"
+					gridOverlay={true}
+				>
+					<div slot="image" class="photo-placeholder">[Photo: Grant recipient project]</div>
+				</CardAlt>
+
+				<CardAlt
+					title="SF Fellowship"
+					description="10 days in San Francisco. Inside startups, meeting founders, seeing what's possible."
+					href="#sf-fellowship"
+					figureNum="FIG. 4"
+					gridOverlay={true}
+				>
+					<img slot="image" src="/SFFellowshipGoldenGateGroup.JPG" alt="SF Fellowship group at Golden Gate Bridge" />
+				</CardAlt>
+			</div>
 		</div>
 	</section>
 
@@ -446,17 +460,66 @@ const heroCollage = [
 		padding: 48px 24px;
 	}
 
+	.programmes-wrapper {
+		max-width: 1100px;
+		margin: 0 auto;
+		position: relative;
+		padding: 24px;
+		padding-bottom: 48px;
+		border: 3px solid #2c5282;
+		background:
+			/* Major grid lines */
+			linear-gradient(to right, rgba(255, 255, 255, 0.4) 1px, transparent 1px),
+			linear-gradient(to bottom, rgba(255, 255, 255, 0.4) 1px, transparent 1px),
+			/* Minor grid lines */
+			linear-gradient(to right, rgba(255, 255, 255, 0.15) 1px, transparent 1px),
+			linear-gradient(to bottom, rgba(255, 255, 255, 0.15) 1px, transparent 1px),
+			/* Base blueprint blue */
+			#4a7fbf;
+		background-size: 80px 80px, 80px 80px, 16px 16px, 16px 16px, 100% 100%;
+	}
+
+	/* Drawing title block - like engineering drawings */
+	.drawing-title-block {
+		position: absolute;
+		bottom: 0;
+		right: 0;
+		border: 2px solid rgba(255, 255, 255, 0.6);
+		border-right: none;
+		border-bottom: none;
+		background: rgba(44, 82, 130, 0.9);
+		padding: 8px 16px;
+		z-index: 10;
+	}
+
+	.title-block-content {
+		display: flex;
+		gap: 24px;
+		font-family: 'Courier New', monospace;
+		font-size: 0.65rem;
+		font-weight: 600;
+		letter-spacing: 0.05em;
+		color: rgba(255, 255, 255, 0.9);
+	}
+
+	.drawing-number {
+		padding-right: 24px;
+		border-right: 1px solid rgba(255, 255, 255, 0.3);
+	}
+
+	.drawing-title {
+		flex: 1;
+	}
+
+	.drawing-rev {
+		padding-left: 24px;
+		border-left: 1px solid rgba(255, 255, 255, 0.3);
+	}
+
 	.programmes-grid {
 		display: grid;
 		grid-template-columns: repeat(3, 1fr);
-		gap: 24px;
-		max-width: 1100px;
-		margin: 0 auto;
-	}
-
-	/* Summer Programme card spans full width on top */
-	.programmes-grid > :global(:first-child) {
-		grid-column: 1 / -1;
+		gap: 20px;
 	}
 
 	/* Section: Initiatives */
@@ -650,6 +713,37 @@ const heroCollage = [
 	@media (max-width: 900px) {
 		.programmes-grid {
 			grid-template-columns: 1fr;
+		}
+
+		.programmes-wrapper {
+			padding: 16px;
+			padding-bottom: 60px;
+		}
+	}
+
+	@media (max-width: 600px) {
+		.drawing-title-block {
+			position: relative;
+			margin-top: 20px;
+			border: 2px solid rgba(255, 255, 255, 0.5);
+			bottom: auto;
+			right: auto;
+		}
+
+		.title-block-content {
+			flex-wrap: wrap;
+			gap: 8px 16px;
+			font-size: 0.6rem;
+		}
+
+		.drawing-number,
+		.drawing-rev {
+			border: none;
+			padding: 0;
+		}
+
+		.programmes-wrapper {
+			padding-bottom: 16px;
 		}
 	}
 
