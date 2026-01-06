@@ -1,6 +1,6 @@
 ---
 interface Props {
-    variant?: 'primary' | 'secondary';
+    variant?: 'primary' | 'secondary' | 'cta';
     href?: string;
     class?: string;
 }
@@ -58,6 +58,22 @@ const Tag = href ? 'a' : 'button';
     .btn-secondary:hover {
         background-color: rgba(221, 223, 228, 0.5);
         box-shadow: none;
+    }
+
+    .btn-cta {
+        background-color: var(--color-orange-400);
+        color: white;
+        border: 1px solid transparent;
+        box-shadow: var(--sh-orange-btn);
+    }
+
+    .btn-cta:hover {
+        background-color: var(--color-orange-500);
+        box-shadow: none;
+    }
+
+    .btn-cta:active {
+        background-color: var(--color-orange-600);
     }
 
     .btn :global(svg) {

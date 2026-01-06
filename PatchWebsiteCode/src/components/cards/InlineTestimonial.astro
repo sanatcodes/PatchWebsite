@@ -1,0 +1,89 @@
+---
+import Avatar from '../ui/Avatar.astro';
+
+interface Props {
+    quote: string;
+    authorName: string;
+    authorTitle: string;
+    initials: string;
+    variant?: 'default' | 'highlighted';
+    class?: string;
+}
+
+const { quote, authorName, authorTitle, initials, variant = 'default', class: className } = Astro.props;
+---
+
+<div class:list={['inline-testimonial', `inline-testimonial-${variant}`, className]}>
+    <blockquote class="inline-testimonial-quote" set:html={quote} />
+    <div class="inline-testimonial-author">
+        <Avatar initials={initials} size="sm" />
+        <div class="inline-testimonial-author-info">
+            <span class="author-name">{authorName}</span>
+            <span class="author-title">{authorTitle}</span>
+        </div>
+    </div>
+</div>
+
+<style>
+    .inline-testimonial {
+        padding: 16px 20px;
+        margin: 16px 0;
+        border-left: 3px solid var(--color-blue-200);
+        background-color: rgba(239, 246, 255, 0.3);
+        border-radius: 0 4px 4px 0;
+    }
+
+    .inline-testimonial-highlighted {
+        border-left-color: var(--color-yellow-300);
+        background: linear-gradient(90deg,
+            rgba(254, 252, 232, 0.3),
+            transparent 50%
+        );
+    }
+
+    .inline-testimonial-quote {
+        font-size: 0.875rem;
+        line-height: 1.6;
+        color: var(--text-secondary);
+        margin-bottom: 12px;
+        position: relative;
+    }
+
+    .inline-testimonial-quote::before {
+        content: '"';
+    }
+
+    .inline-testimonial-quote::after {
+        content: '"';
+    }
+
+    .inline-testimonial-quote :global(.highlight) {
+        background-color: var(--highlight-yellow-subtle);
+        border-radius: 2px;
+        padding: 0 3px;
+    }
+
+    .inline-testimonial-author {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .inline-testimonial-author-info {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+    }
+
+    .author-name {
+        font-size: 0.8125rem;
+        font-weight: 500;
+        color: var(--text-primary);
+        font-family: Georgia, 'Times New Roman', serif;
+    }
+
+    .author-title {
+        font-size: 0.6875rem;
+        color: var(--text-muted);
+    }
+</style>

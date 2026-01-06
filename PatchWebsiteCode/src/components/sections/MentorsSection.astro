@@ -1,0 +1,66 @@
+---
+import SectionHeader from '../ui/SectionHeader.astro';
+import MentorCard from '../cards/MentorCard.astro';
+
+interface Mentor {
+    name: string;
+    title: string;
+    imageSrc?: string;
+}
+
+interface Props {
+    label?: string;
+    title: string;
+    subtitle?: string;
+    mentors: Mentor[];
+    class?: string;
+}
+
+const { label, title, subtitle, mentors, class: className } = Astro.props;
+---
+
+<section class:list={['mentors-section', className]}>
+    <SectionHeader label={label} title={title} subtitle={subtitle} />
+
+    <div class="mentors-grid">
+        {mentors.map((mentor) => (
+            <MentorCard
+                name={mentor.name}
+                title={mentor.title}
+                imageSrc={mentor.imageSrc}
+            />
+        ))}
+    </div>
+</section>
+
+<style>
+    .mentors-section {
+        padding: 48px 24px;
+    }
+
+    .mentors-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+        max-width: 1100px;
+        margin: 0 auto;
+    }
+
+    @media (max-width: 1024px) {
+        .mentors-grid {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+
+    @media (max-width: 768px) {
+        .mentors-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (max-width: 480px) {
+        .mentors-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>

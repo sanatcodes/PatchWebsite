@@ -48,6 +48,40 @@
     /* Border colors */
     --grid-border-color: rgba(190, 219, 255, 0.5);
     --default-border-color: rgba(198, 202, 210, 0.5);
+
+    /* Brand Accent Colors - Orange */
+    --color-orange-400: #ffb100;
+    --color-orange-500: #e69f00;
+    --color-orange-600: #cc8c00;
+
+    /* Brand Accent Colors - Yellow */
+    --color-yellow-200: #fefce8;
+    --color-yellow-300: #f4f83b;
+    --color-yellow-400: #facc15;
+
+    /* Orange button shadows */
+    --sh-orange-btn: hsl(43, 100%, 35%) 0 -2px 0 0 inset,
+                     hsl(43, 100%, 95%) 0 1px 3px 0;
+
+    /* Yellow highlight for testimonials */
+    --highlight-yellow: rgba(244, 248, 59, 0.25);
+    --highlight-yellow-subtle: rgba(244, 248, 59, 0.15);
+
+    /* Typography scale */
+    --text-xs: 0.6875rem;
+    --text-sm: 0.8125rem;
+    --text-base: 0.9375rem;
+    --text-md: 1rem;
+    --text-lg: 1.125rem;
+    --text-xl: 1.5rem;
+    --text-2xl: 2rem;
+    --text-3xl: 2.5rem;
+    --text-4xl: 3.5rem;
+
+    /* Line heights */
+    --leading-tight: 1.25;
+    --leading-snug: 1.375;
+    --leading-normal: 1.6;
 }
 
 /* Reset and Base Styles */
@@ -108,6 +142,20 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 500;
 }
 
+h1 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: var(--leading-tight);
+}
+
+h2, h3 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    line-height: var(--leading-snug);
+}
+
 /* Responsive Container */
 @media (max-width: 1024px) {
     .main-container {
@@ -125,4 +173,29 @@ h1, h2, h3, h4, h5, h6 {
     .main-container {
         margin: 0 12px;
     }
+}
+
+/* Photo Placeholder Styles */
+.photo-placeholder {
+    background: var(--color-cream-100);
+    border: 2px dashed var(--color-blue-200);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-offgray-300);
+    font-size: var(--text-sm);
+    padding: 20px;
+    text-align: center;
+    border-radius: 2px;
+    min-height: 120px;
+}
+
+/* Link styles */
+a {
+    color: var(--color-accent-blue);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
 }

@@ -10,10 +10,31 @@ const { logoText = 'Patch' } = Astro.props;
 
 <header class="header">
     <div class="header-inner">
-        <div class="header-logo">{logoText}</div>
+        <a href="/" class="header-logo">
+            <img src="/PatchLogoBlue.svg" alt="Patch" class="logo-image" />
+            <span class="logo-text">{logoText}</span>
+        </a>
+
+        <nav class="header-links">
+            <div class="nav-dropdown">
+                <button class="nav-link">
+                    Programmes
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="m6 9 6 6 6-6"/>
+                    </svg>
+                </button>
+                <div class="dropdown-menu">
+                    <a href="#summer-programme">Summer Programme</a>
+                    <a href="#tecs">TECS</a>
+                    <a href="#fast-grants">Fast Grants</a>
+                    <a href="#sf-fellowship">SF Fellowship</a>
+                </div>
+            </div>
+            <a href="#about" class="nav-link">About</a>
+        </nav>
+
         <div class="header-nav">
-            <Button variant="secondary" href="#">Sign up</Button>
-            <Button variant="primary" href="#">Download</Button>
+            <Button variant="cta" href="#apply">Apply Now</Button>
         </div>
     </div>
 </header>
@@ -42,8 +63,86 @@ const { logoText = 'Patch' } = Astro.props;
     }
 
     .header-logo {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        text-decoration: none;
+    }
+
+    .logo-image {
+        height: 28px;
+        width: auto;
+    }
+
+    .logo-text {
         font-weight: 600;
+        font-size: 1.125rem;
         color: var(--text-primary);
+    }
+
+    .header-links {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+    }
+
+    .nav-link {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        font-size: var(--text-sm);
+        font-weight: 500;
+        color: var(--text-secondary);
+        text-decoration: none;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 8px 0;
+        font-family: inherit;
+    }
+
+    .nav-link:hover {
+        color: var(--text-primary);
+    }
+
+    .nav-dropdown {
+        position: relative;
+    }
+
+    .dropdown-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        min-width: 180px;
+        padding: 8px 0;
+        background: white;
+        border: 1px solid var(--default-border-color);
+        border-radius: 4px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(4px);
+        transition: all 0.15s ease;
+        z-index: 100;
+    }
+
+    .nav-dropdown:hover .dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+    .dropdown-menu a {
+        display: block;
+        padding: 8px 16px;
+        font-size: var(--text-sm);
+        color: var(--text-secondary);
+        text-decoration: none;
+    }
+
+    .dropdown-menu a:hover {
+        background: var(--color-blue-50);
+        color: var(--color-accent-blue);
     }
 
     .header-nav {
@@ -72,5 +171,15 @@ const { logoText = 'Patch' } = Astro.props;
 
     .header::after {
         right: -4.5px;
+    }
+
+    @media (max-width: 768px) {
+        .header-links {
+            display: none;
+        }
+
+        .logo-text {
+            display: none;
+        }
     }
 </style>

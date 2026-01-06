@@ -2,21 +2,28 @@
 interface Props {
     title: string;
     description: string;
+    featured?: boolean;
+    gridOverlay?: boolean;
+    href?: string;
     class?: string;
 }
 
-const { title, description, class: className } = Astro.props;
+const { title, description, featured = false, gridOverlay = false, href, class: className } = Astro.props;
 ---
 
-<div class:list={['card-alt', className]}>
+<div class:list={['card-alt', { featured, 'with-grid-overlay': gridOverlay }, className]}>
     <div class="card-alt-image">
         <slot name="image">
             [Image]
         </slot>
+        {gridOverlay && <div class="grid-overlay" />}
     </div>
     <div class="card-alt-content">
         <h3>{title}</h3>
         <p>{description}</p>
+        {href && (
+            <a href={href} class="card-link">Learn more &rarr;</a>
+        )}
     </div>
 </div>
 
@@ -74,5 +81,81 @@ const { title, description, class: className } = Astro.props;
     .card-alt-content p {
         font-size: 0.8125rem;
         color: var(--text-secondary);
+    }
+
+    .card-link {
+        display: inline-block;
+        margin-top: 8px;
+        font-size: 0.8125rem;
+        color: var(--color-accent-blue);
+        text-decoration: none;
+        font-weight: 500;
+    }
+
+    .card-link:hover {
+        text-decoration: underline;
+    }
+
+    /* Featured variant - 2x prominence */
+    .card-alt.featured {
+        grid-column: span 2;
+        padding: 16px;
+    }
+
+    .card-alt.featured .card-alt-image {
+        aspect-ratio: 2/1;
+    }
+
+    .card-alt.featured .card-alt-content h3 {
+        font-size: 1.25rem;
+    }
+
+    .card-alt.featured .card-alt-content p {
+        font-size: 0.9375rem;
+    }
+
+    /* Grid overlay on images */
+    .grid-overlay {
+        position: absolute;
+        inset: 0;
+        background: repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 11px,
+            rgba(190, 219, 255, 0.1) 11px,
+            rgba(190, 219, 255, 0.1) 12px
+        ),
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 11px,
+            rgba(190, 219, 255, 0.1) 11px,
+            rgba(190, 219, 255, 0.1) 12px
+        );
+        pointer-events: none;
+        opacity: 0.8;
+    }
+
+    /* Make image container relative for overlay positioning */
+    .card-alt.with-grid-overlay .card-alt-image {
+        position: relative;
+    }
+
+    /* Responsive: featured card goes single column on mobile */
+    @media (max-width: 768px) {
+        .card-alt.featured {
+            grid-column: span 1;
+        }
+
+        .card-alt.featured .card-alt-image {
+            aspect-ratio: 16/9;
+        }
+    }
+
+    /* Hide grid overlay on smaller screens */
+    @media (max-width: 640px) {
+        .grid-overlay {
+            display: none;
+        }
     }
 </style>

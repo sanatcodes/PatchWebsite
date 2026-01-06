@@ -1,4 +1,6 @@
 ---
+import JitteredGrid from '../ui/JitteredGrid.astro';
+
 interface Props {
     headline: string;
     description: string;
@@ -8,6 +10,14 @@ const { headline, description } = Astro.props;
 ---
 
 <section class="hero-section">
+    <JitteredGrid
+        seed={42}
+        opacity={0.04}
+        animate={true}
+        animationDuration={60}
+        maskDirection="top"
+    />
+
     <div class="hero-content">
         <h1>{headline}</h1>
         <p>{description}</p>
@@ -15,16 +25,6 @@ const { headline, description } = Astro.props;
             <slot name="actions" />
         </div>
     </div>
-
-    <!-- Blue grid SVG pattern -->
-    <svg class="hero-grid" aria-hidden="true">
-        <defs>
-            <pattern id="hero-grid-pattern" width="12" height="12" patternUnits="userSpaceOnUse" x="-1" y="-1">
-                <path d="M.5 12V.5H12" fill="none" stroke-width="1"></path>
-            </pattern>
-        </defs>
-        <rect width="100%" height="100%" stroke-width="0" fill="url(#hero-grid-pattern)"></rect>
-    </svg>
 </section>
 
 <style>
@@ -64,22 +64,6 @@ const { headline, description } = Astro.props;
         gap: 12px;
         justify-content: center;
         margin-top: 24px;
-    }
-
-    /* Blue Grid Pattern SVG */
-    .hero-grid {
-        pointer-events: none;
-        position: absolute;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-        color: var(--color-blue-200);
-        fill: var(--color-blue-200);
-        stroke: var(--color-blue-200);
-        mask-image: linear-gradient(to top, rgba(255, 255, 255, 0.68), transparent);
-        -webkit-mask-image: linear-gradient(to top, rgba(255, 255, 255, 0.68), transparent);
-        opacity: 0.5;
-        z-index: -1;
     }
 
     @media (max-width: 768px) {

@@ -1,0 +1,145 @@
+---
+import Button from '../ui/Button.astro';
+import JitteredGrid from '../ui/JitteredGrid.astro';
+
+interface Props {
+    title: string;
+    description?: string;
+    details?: Array<{ label: string; value: string }>;
+    primaryCta?: { text: string; href: string };
+    secondaryCta?: { text: string; href: string };
+    class?: string;
+}
+
+const { title, description, details = [], primaryCta, secondaryCta, class: className } = Astro.props;
+---
+
+<section class:list={['apply-section', className]} id="apply">
+    <JitteredGrid
+        seed={999}
+        opacity={0.03}
+        animate={true}
+        animationDuration={90}
+        maskDirection="both"
+    />
+
+    <div class="apply-content">
+        <h2>{title}</h2>
+        {description && <p class="apply-description">{description}</p>}
+
+        {details.length > 0 && (
+            <div class="apply-details">
+                {details.map((detail) => (
+                    <div class="detail-item">
+                        <span class="detail-label">{detail.label}</span>
+                        <span class="detail-value">{detail.value}</span>
+                    </div>
+                ))}
+            </div>
+        )}
+
+        <div class="apply-actions">
+            {primaryCta && (
+                <Button variant="cta" href={primaryCta.href}>
+                    {primaryCta.text}
+                </Button>
+            )}
+            {secondaryCta && (
+                <Button variant="secondary" href={secondaryCta.href}>
+                    {secondaryCta.text}
+                </Button>
+            )}
+        </div>
+    </div>
+</section>
+
+<style>
+    .apply-section {
+        position: relative;
+        padding: 80px 24px;
+        background: linear-gradient(to bottom,
+            rgba(254, 252, 232, 0.3),
+            rgba(255, 255, 255, 0.5)
+        );
+        border-top: 1px solid rgba(244, 248, 59, 0.3);
+        border-bottom: 1px solid rgba(244, 248, 59, 0.3);
+        overflow: hidden;
+    }
+
+    .apply-content {
+        position: relative;
+        z-index: 2;
+        max-width: 600px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .apply-content h2 {
+        font-size: var(--text-2xl);
+        font-weight: 400;
+        font-family: Georgia, 'Times New Roman', serif;
+        color: var(--color-accent-blue);
+        margin-bottom: 16px;
+    }
+
+    .apply-description {
+        font-size: var(--text-md);
+        color: var(--text-secondary);
+        line-height: 1.6;
+        margin-bottom: 24px;
+    }
+
+    .apply-details {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 16px 32px;
+        margin-bottom: 32px;
+        padding: 20px;
+        background: rgba(255, 255, 255, 0.6);
+        border: 1px solid var(--default-border-color);
+        border-radius: 4px;
+    }
+
+    .detail-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+    }
+
+    .detail-label {
+        font-size: var(--text-xs);
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--text-muted);
+    }
+
+    .detail-value {
+        font-size: var(--text-sm);
+        font-weight: 500;
+        color: var(--text-primary);
+    }
+
+    .apply-actions {
+        display: flex;
+        gap: 12px;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    @media (max-width: 640px) {
+        .apply-section {
+            padding: 60px 24px;
+        }
+
+        .apply-content h2 {
+            font-size: var(--text-xl);
+        }
+
+        .apply-details {
+            gap: 12px 24px;
+        }
+    }
+</style>

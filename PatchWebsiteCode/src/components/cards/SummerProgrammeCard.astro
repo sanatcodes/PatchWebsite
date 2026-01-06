@@ -1,0 +1,161 @@
+---
+interface Props {
+    title: string;
+    description: string;
+    images?: Array<{ src: string; alt: string }>;
+    href?: string;
+    class?: string;
+}
+
+const { title, description, images = [], href, class: className } = Astro.props;
+---
+
+<div class:list={['summer-programme-card', className]}>
+    <div class="summer-programme-images">
+        {images.length > 0 ? (
+            images.map((image, index) => (
+                <div class={`image-slot image-${index + 1}`}>
+                    <img src={image.src} alt={image.alt} loading="lazy" />
+                </div>
+            ))
+        ) : (
+            <>
+                <div class="image-slot image-1">[Stage Photo]</div>
+                <div class="image-slot image-2">[Group Photo]</div>
+                <div class="image-slot image-3">[Working Photo]</div>
+            </>
+        )}
+    </div>
+
+    <div class="summer-programme-content">
+        <h3>{title}</h3>
+        <p>{description}</p>
+        {href && (
+            <a href={href} class="summer-programme-link">
+                Learn more &rarr;
+            </a>
+        )}
+    </div>
+</div>
+
+<style>
+    .summer-programme-card {
+        grid-column: span 2;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        padding: 16px;
+        background: linear-gradient(135deg,
+            rgba(254, 252, 232, 0.4),
+            rgba(255, 255, 255, 0.6)
+        );
+        border: 2px solid rgba(244, 248, 59, 0.4);
+        border-radius: 4px;
+        box-shadow: 8px 8px 0 rgba(244, 248, 59, 0.1);
+        transition: all 0.15s ease;
+    }
+
+    .summer-programme-card:hover {
+        border-color: var(--color-orange-400);
+        box-shadow: 8px 8px 0 rgba(255, 177, 0, 0.15);
+    }
+
+    /* Photo collage layout */
+    .summer-programme-images {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        gap: 8px;
+    }
+
+    .image-slot {
+        background: var(--color-cream-50);
+        border: 1px solid var(--default-border-color);
+        border-radius: 2px;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #98a0ae;
+        font-size: 0.75rem;
+    }
+
+    .image-slot img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    /* First image spans both columns */
+    .image-slot.image-1 {
+        grid-column: span 2;
+        aspect-ratio: 2/1;
+    }
+
+    .image-slot.image-2,
+    .image-slot.image-3 {
+        aspect-ratio: 1/1;
+    }
+
+    .summer-programme-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 8px;
+    }
+
+    .summer-programme-content h3 {
+        font-size: 1.5rem;
+        font-weight: 400;
+        font-family: Georgia, 'Times New Roman', serif;
+        color: var(--text-primary);
+        margin-bottom: 12px;
+        letter-spacing: -0.01em;
+    }
+
+    .summer-programme-content p {
+        font-size: 0.9375rem;
+        line-height: 1.6;
+        color: var(--text-secondary);
+        margin-bottom: 16px;
+    }
+
+    .summer-programme-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        font-size: 0.9375rem;
+        font-weight: 500;
+        color: var(--color-orange-500);
+        text-decoration: none;
+        transition: color 0.1s ease;
+    }
+
+    .summer-programme-link:hover {
+        color: var(--color-orange-600);
+        text-decoration: underline;
+    }
+
+    /* Responsive: single column on tablet/mobile */
+    @media (max-width: 768px) {
+        .summer-programme-card {
+            grid-column: span 1;
+            grid-template-columns: 1fr;
+        }
+
+        .summer-programme-images {
+            grid-template-columns: 1fr;
+            grid-template-rows: auto;
+        }
+
+        .image-slot.image-1 {
+            grid-column: span 1;
+            aspect-ratio: 16/9;
+        }
+
+        .image-slot.image-2,
+        .image-slot.image-3 {
+            display: none;
+        }
+    }
+</style>

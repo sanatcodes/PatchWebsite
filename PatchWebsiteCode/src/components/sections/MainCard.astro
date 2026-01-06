@@ -1,4 +1,6 @@
 ---
+import JitteredGrid from '../ui/JitteredGrid.astro';
+
 interface Props {
     class?: string;
 }
@@ -8,6 +10,14 @@ const { class: className } = Astro.props;
 
 <section class:list={['card-section', className]}>
     <div class="card-main">
+        <JitteredGrid
+            seed={123}
+            opacity={0.03}
+            animate={false}
+            maskDirection="both"
+            class="main-card-grid"
+        />
+
         <div class="card-main-content">
             <!-- Feature row -->
             <div class="feature-row">
