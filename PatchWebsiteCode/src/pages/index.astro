@@ -6,6 +6,7 @@ import Button from '../components/ui/Button.astro';
 import Divider from '../components/ui/Divider.astro';
 import SectionHeader from '../components/ui/SectionHeader.astro';
 import PhotoFrame from '../components/ui/PhotoFrame.astro';
+import PhotoCollage from '../components/ui/PhotoCollage.astro';
 
 // Card Components
 import CardAlt from '../components/cards/CardAlt.astro';
@@ -44,6 +45,23 @@ const supporters = [
 	{ name: "Abbey Capital", logoSrc: "/PartnerLogos/AC_Old_New_Logo_Artboard-2.png" },
 	{ name: "Dogpatch Labs" },
 ];
+
+// Hero collage photos - 6 photos in masonry layout
+// Layout (4x4 grid):
+// ┌─────────┬─────┬─────┐
+// │    1    │  2  │     │
+// │landscape│     │  3  │
+// ├────┬────┼─────┤port │
+// │ 4  │ 5  │  6  │rait │
+// └────┴────┴─────┴─────┘
+const heroCollage = [
+	{ src: "/SFFellowshipGoldenGateGroup.JPG", alt: "SF Fellowship group at Golden Gate" },  // 1: landscape
+	{ src: "/RobotGirl.jpg", alt: "Student with robot" },  // 2: landscape (cropped)
+	{ src: "/AlumniPhotos/AidanWithRocket.jpg", alt: "Aidan with rocket" },  // 3: portrait
+	{ src: "/AlumniCompanies/JamiePalmerIcarusRobotics.png", alt: "Jamie Palmer - Icarus Robotics" },  // 4: square
+	{ src: "/AlumniCompanies/FieldOfVision.png", alt: "Field of Vision" },  // 5: square
+	{ src: "/Robodog.jpg", alt: "Robot dog project" },  // 6: landscape (cropped)
+];
 ---
 
 <Layout title="Patch - Ireland's Community for Exceptional Young Technologists">
@@ -63,6 +81,9 @@ const supporters = [
 			<Button variant="secondary" href="#summer-programme">
 				Learn more
 			</Button>
+		</Fragment>
+		<Fragment slot="media">
+			<PhotoCollage items={heroCollage} />
 		</Fragment>
 	</Hero>
 

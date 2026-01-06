@@ -4,7 +4,9 @@
       "Bash(npm run build:*)",
       "Bash(find:*)",
       "Bash(cat:*)",
-      "Bash(npm run dev:*)"
+      "Bash(npm run dev:*)",
+      "Bash(python get_photo_dimensions.py:*)",
+      "Bash(python:*)"
     ]
   }
 }
