@@ -22,13 +22,21 @@ const { headline, description, frameLabel = "FIG. 1 — PATCH COMMUNITY", compac
         <!-- Corner markers -->
         <div class="corner-mark top-left"></div>
         <div class="corner-mark top-right"></div>
-        <div class="corner-mark bottom-left"></div>
         <div class="corner-mark bottom-right"></div>
         <!-- Pinhole marks - like it was pinned to a drafting board -->
         <div class="pinhole pinhole-tl"></div>
         <div class="pinhole pinhole-tr"></div>
-        <div class="pinhole pinhole-bl"></div>
         <div class="pinhole pinhole-br"></div>
+    </div>
+
+    <!-- Hand-drawn annotations -->
+    <div class="hero-annotations" aria-hidden="true">
+        <img
+            src="/sketches/rocketSketch.svg"
+            alt=""
+            class="hero-sketch hero-sketch-rocket"
+            loading="eager"
+        />
     </div>
 
     <div class="hero-layout">
@@ -70,6 +78,28 @@ const { headline, description, frameLabel = "FIG. 1 — PATCH COMMUNITY", compac
         position: absolute;
         inset: 0;
         pointer-events: none;
+    }
+
+    /* Hand-drawn sketch annotations */
+    .hero-annotations {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        z-index: 2; /* above blueprint, below content */
+    }
+
+    .hero-sketch {
+        position: absolute;
+        opacity: 0.85;
+        filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.25)) brightness(0) invert(1);
+    }
+
+    /* Rocket placement */
+    .hero-sketch-rocket {
+        bottom: 0;
+        left: 0;
+        width: 280px;
+        transform: rotate(-8deg);
     }
 
     /* Paper texture using noise */
@@ -367,6 +397,12 @@ const { headline, description, frameLabel = "FIG. 1 — PATCH COMMUNITY", compac
         .frame-annotations {
             display: none;
         }
+
+        .hero-sketch-rocket {
+            width: 140px;
+            bottom: 0;
+            left: 0;
+        }
     }
 
     @media (max-width: 768px) {
@@ -381,6 +417,10 @@ const { headline, description, frameLabel = "FIG. 1 — PATCH COMMUNITY", compac
         .corner-mark,
         .pinhole,
         .age-spot {
+            display: none;
+        }
+
+        .hero-annotations {
             display: none;
         }
     }
