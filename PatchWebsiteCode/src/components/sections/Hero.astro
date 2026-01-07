@@ -473,7 +473,7 @@ const { headline, description, frameLabel = "FIG. 1 — PATCH COMMUNITY", compac
         }
 
         .hero-section {
-            padding: 60px 16px 160px;
+            padding: 60px 16px 130px;
         }
 
         .corner-mark,
@@ -482,16 +482,67 @@ const { headline, description, frameLabel = "FIG. 1 — PATCH COMMUNITY", compac
             display: none;
         }
 
-        .hero-annotations {
-            display: none;
+        /* Keep rocket visible but smaller on mobile */
+        .hero-sketch-rocket {
+            width: 120px;
+            bottom: 0;
+            left: 0;
         }
 
+        /* Keep graph on mobile, smaller and positioned on right */
+        .hero-sketch-graph {
+            top: 50%;
+            right: -40px;
+            width: 100px;
+            transform: translateY(-50%);
+        }
+
+        /* Make photo smaller on mobile */
+        .blueprint-frame {
+            max-width: 85%;
+            margin: 0 auto;
+        }
+
+        /* Keep lightbulb but adjust position for centered content - point at B in Build */
         .content-frame .hero-sketch-lightbulb {
+            top: -50px;
+            left: 50%;
+            transform: translateX(-255%);
+            width: 80px;
+        }
+
+        /* Keep launchpad below photo, smaller */
+        .blueprint-frame .hero-sketch-launchpad {
+            width: 100px;
+        }
+
+        /* Stack buttons vertically and center */
+        .hero-actions {
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .hero-actions :global(.btn-technical) {
+            margin-right: 0;
+        }
+
+        /* Hide leader line on mobile */
+        .hero-actions :global(.btn-technical .leader-line) {
             display: none;
         }
 
-        .blueprint-frame .hero-sketch-launchpad {
-            display: none;
+        /* Style Learn More button for blueprint background on mobile */
+        .hero-actions :global(.btn-secondary) {
+            background-color: #4a7fbf;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            color: white;
+            box-shadow: none;
+        }
+
+        .hero-actions :global(.btn-secondary:hover) {
+            background-color: #5a8fcf;
+            border-color: rgba(255, 255, 255, 0.7);
         }
     }
 
@@ -504,8 +555,9 @@ const { headline, description, frameLabel = "FIG. 1 — PATCH COMMUNITY", compac
             display: none;
         }
 
+        /* Keep frame label visible on mobile */
         .frame-label {
-            display: none;
+            font-size: 0.65rem;
         }
     }
 
