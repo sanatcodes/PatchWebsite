@@ -79,6 +79,11 @@
     --leading-normal: 1.6;
 }
 
+/* Smooth scrolling for anchor links */
+html {
+    scroll-behavior: smooth;
+}
+
 /* Reset and Base Styles */
 *,
 *::before,

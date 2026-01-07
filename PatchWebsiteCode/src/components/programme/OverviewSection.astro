@@ -1,0 +1,133 @@
+---
+interface ListItem {
+    text: string;
+}
+
+interface Props {
+    label?: string;
+    leadText: string;
+    listLabel?: string;
+    listItems?: ListItem[];
+    note?: string;
+}
+
+const {
+    label = "OVERVIEW",
+    leadText,
+    listLabel,
+    listItems = [],
+    note
+} = Astro.props;
+---
+
+<section class="overview-section">
+    <div class="overview-content">
+        <div class="section-label">{label}</div>
+        <p class="lead-text" set:html={leadText} />
+
+        {listItems.length > 0 && (
+            <div class="list-content">
+                {listLabel && <p class="list-label">{listLabel}</p>}
+                <ul>
+                    {listItems.map(item => (
+                        <li>{item.text}</li>
+                    ))}
+                </ul>
+                {note && <p class="list-note">{note}</p>}
+            </div>
+        )}
+    </div>
+</section>
+
+<style>
+    .overview-section {
+        padding: 56px 24px;
+        max-width: 750px;
+        margin: 0 auto;
+    }
+
+    .overview-content {
+        position: relative;
+    }
+
+    .section-label {
+        font-family: inherit;
+        font-size: 1.125rem;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        color: var(--color-accent-blue);
+        margin-bottom: 24px;
+        text-transform: uppercase;
+    }
+
+    .lead-text {
+        font-family: Georgia, 'Times New Roman', serif;
+        font-size: 1.375rem;
+        line-height: 1.7;
+        color: var(--text-primary);
+        margin: 0 0 28px;
+    }
+
+    .lead-text :global(strong) {
+        color: var(--color-accent-blue);
+    }
+
+    /* Simple list - no box */
+    .list-content {
+        margin-top: 8px;
+    }
+
+    .list-label {
+        font-family: Georgia, 'Times New Roman', serif;
+        font-size: 1.125rem;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin: 0 0 16px;
+    }
+
+    .list-content ul {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 20px;
+    }
+
+    .list-content li {
+        position: relative;
+        padding-left: 24px;
+        margin-bottom: 12px;
+        font-size: 1.0625rem;
+        color: var(--text-secondary);
+        line-height: 1.6;
+    }
+
+    .list-content li::before {
+        content: '•';
+        position: absolute;
+        left: 0;
+        color: var(--color-accent-blue);
+        font-size: 1.25rem;
+        line-height: 1.4;
+    }
+
+    .list-note {
+        font-family: Georgia, 'Times New Roman', serif;
+        font-style: italic;
+        font-size: 1rem;
+        color: var(--text-muted);
+        margin: 0;
+    }
+
+    @media (max-width: 480px) {
+        .overview-section {
+            padding: 40px 16px;
+        }
+
+        .lead-text {
+            font-size: 1.1875rem;
+        }
+
+        .list-content li {
+            font-size: 1rem;
+        }
+    }
+</style>

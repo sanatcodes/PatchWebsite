@@ -1,0 +1,136 @@
+---
+interface Spec {
+    key: string;
+    value: string;
+}
+
+interface Props {
+    label?: string;
+    specs: Spec[];
+    note?: string;
+}
+
+const {
+    label = "SPECIFICATIONS",
+    specs,
+    note
+} = Astro.props;
+---
+
+<section class="specs-section">
+    <div class="specs-content">
+        <div class="section-label">{label}</div>
+
+        <div class="specs-grid">
+            {specs.map(spec => (
+                <div class="spec-row">
+                    <span class="spec-key">{spec.key}</span>
+                    <span class="spec-dots"></span>
+                    <span class="spec-val">{spec.value}</span>
+                </div>
+            ))}
+        </div>
+
+        {note && <p class="specs-note" set:html={note} />}
+    </div>
+</section>
+
+<style>
+    .specs-section {
+        padding: 56px 24px;
+        max-width: 750px;
+        margin: 0 auto;
+    }
+
+    .specs-content {
+        position: relative;
+    }
+
+    .section-label {
+        font-family: inherit;
+        font-size: 1.125rem;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        color: var(--color-accent-blue);
+        margin-bottom: 28px;
+        text-transform: uppercase;
+    }
+
+    .specs-grid {
+        margin-bottom: 24px;
+    }
+
+    .spec-row {
+        display: flex;
+        align-items: baseline;
+        padding: 14px 0;
+        border-bottom: 1px dotted #ccc;
+    }
+
+    .spec-row:last-child {
+        border-bottom: none;
+    }
+
+    .spec-key {
+        font-family: 'Courier New', monospace;
+        font-size: 1rem;
+        color: #555;
+        min-width: 130px;
+        flex-shrink: 0;
+    }
+
+    .spec-dots {
+        flex: 1;
+        border-bottom: 1px dotted #ccc;
+        margin: 0 16px;
+        height: 1px;
+        align-self: center;
+        min-width: 20px;
+    }
+
+    .spec-val {
+        font-family: Georgia, 'Times New Roman', serif;
+        font-size: 1.1875rem;
+        color: var(--text-primary);
+        text-align: right;
+    }
+
+    .specs-note {
+        font-family: Georgia, 'Times New Roman', serif;
+        font-size: 1.125rem;
+        line-height: 1.7;
+        color: var(--text-secondary);
+        margin: 0;
+    }
+
+    @media (max-width: 600px) {
+        .specs-section {
+            padding: 40px 16px;
+        }
+
+        .spec-row {
+            flex-wrap: wrap;
+        }
+
+        .spec-dots {
+            display: none;
+        }
+
+        .spec-val {
+            width: 100%;
+            text-align: left;
+            padding-left: 130px;
+            margin-top: 6px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .spec-key {
+            min-width: 100px;
+        }
+
+        .spec-val {
+            padding-left: 100px;
+        }
+    }
+</style>

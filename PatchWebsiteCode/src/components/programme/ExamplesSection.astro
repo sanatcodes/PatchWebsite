@@ -1,0 +1,126 @@
+---
+interface Example {
+    title: string;
+    description: string;
+}
+
+interface Props {
+    label?: string;
+    examples: Example[];
+    highlightText?: string;
+}
+
+const {
+    label = "EXAMPLES",
+    examples,
+    highlightText
+} = Astro.props;
+---
+
+<section class="examples-section">
+    <div class="examples-content">
+        <div class="section-label">{label}</div>
+
+        <div class="examples-list">
+            {examples.map(example => (
+                <div class="example-item">
+                    <strong>{example.title}</strong>
+                    <span class="example-sep">—</span>
+                    <span class="example-desc">{example.description}</span>
+                </div>
+            ))}
+        </div>
+
+        {highlightText && (
+            <p class="highlight-text" set:html={highlightText} />
+        )}
+    </div>
+</section>
+
+<style>
+    .examples-section {
+        padding: 56px 24px;
+        max-width: 750px;
+        margin: 0 auto;
+    }
+
+    .examples-content {
+        position: relative;
+    }
+
+    .section-label {
+        font-family: inherit;
+        font-size: 1.125rem;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        color: var(--color-accent-blue);
+        margin-bottom: 28px;
+        text-transform: uppercase;
+    }
+
+    .examples-list {
+        margin-bottom: 28px;
+    }
+
+    .example-item {
+        padding: 16px 0;
+        border-bottom: 1px solid #eee;
+        font-size: 1.0625rem;
+        line-height: 1.6;
+    }
+
+    .example-item:last-child {
+        border-bottom: none;
+    }
+
+    .example-item strong {
+        color: var(--text-primary);
+        font-size: 1.125rem;
+    }
+
+    .example-sep {
+        color: var(--text-muted);
+        margin: 0 8px;
+    }
+
+    .example-desc {
+        color: var(--text-secondary);
+    }
+
+    .highlight-text {
+        font-family: Georgia, 'Times New Roman', serif;
+        font-size: 1.25rem;
+        line-height: 1.7;
+        color: var(--text-primary);
+        margin: 0;
+        padding: 20px 0 0;
+    }
+
+    .highlight-text :global(strong),
+    .highlight-text :global(em) {
+        background: linear-gradient(180deg, transparent 60%, rgba(255, 177, 0, 0.25) 60%);
+    }
+
+    @media (max-width: 480px) {
+        .examples-section {
+            padding: 40px 16px;
+        }
+
+        .example-item {
+            display: block;
+        }
+
+        .example-sep {
+            display: none;
+        }
+
+        .example-desc {
+            display: block;
+            margin-top: 4px;
+        }
+
+        .highlight-text {
+            font-size: 1.125rem;
+        }
+    }
+</style>

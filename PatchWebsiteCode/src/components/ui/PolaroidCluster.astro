@@ -58,6 +58,17 @@ const { items, class: className } = Astro.props;
             </div>
         </div>
     )}
+    {items[4] && (
+        <div class="polaroid polaroid-5">
+            <span class="tape tape-5"></span>
+            <div class="polaroid-frame">
+                <div class="polaroid-image">
+                    <img src={items[4].src} alt={items[4].alt ?? ''} loading="lazy" />
+                </div>
+                <div class="polaroid-caption">{items[4].caption}</div>
+            </div>
+        </div>
+    )}
 </div>
 
 <style>
@@ -187,6 +198,11 @@ const { items, class: className } = Astro.props;
         transform: translateX(-50%) rotate(-3deg);
     }
 
+    /* Item 5 - hidden on desktop, shown only on mobile */
+    .polaroid-5 {
+        display: none;
+    }
+
     /* Tablet */
     @media (max-width: 900px) {
         .polaroid-cluster {
@@ -208,36 +224,40 @@ const { items, class: className } = Astro.props;
         }
     }
 
-    /* Mobile - show only first photo */
+    /* Mobile - show single photo (item 5), no caption */
     @media (max-width: 768px) {
         .polaroid-cluster {
             display: block;
-            aspect-ratio: 4 / 3;
+            aspect-ratio: unset;
             padding: 0;
         }
 
-        .polaroid-1 {
+        .polaroid-caption {
+            display: none;
+        }
+
+        .polaroid-5 {
+            display: block;
             transform: rotate(-1deg);
         }
 
-        .polaroid-1 .polaroid-frame {
-            padding: 10px 10px 36px 10px;
+        .polaroid-5 .polaroid-frame {
+            padding: 6px;
         }
 
-        .polaroid-1 .polaroid-image {
+        .polaroid-5 .polaroid-image {
             aspect-ratio: 4 / 3;
         }
 
-        .polaroid-1 .polaroid-caption {
-            font-size: 0.8rem;
-            bottom: 8px;
+        .polaroid-5 .tape-5 {
+            top: -6px;
+            left: 50%;
+            transform: translateX(-50%) rotate(5deg);
+            width: 40px;
+            height: 16px;
         }
 
-        .polaroid-1 .tape-1 {
-            width: 50px;
-            height: 20px;
-        }
-
+        .polaroid-1,
         .polaroid-2,
         .polaroid-3,
         .polaroid-4 {
