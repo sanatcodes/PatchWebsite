@@ -42,6 +42,13 @@ const { headline, description, frameLabel = "FIG. 1 — PATCH COMMUNITY", compac
     <div class="hero-layout">
         <div class="hero-content">
             <div class="content-frame">
+                <img
+                    src="/sketches/LightBulbWithArrow.svg"
+                    alt=""
+                    class="hero-sketch hero-sketch-lightbulb"
+                    aria-hidden="true"
+                    loading="eager"
+                />
                 <h1 set:html={headline} />
                 <p>{description}</p>
                 <div class="hero-actions">
@@ -268,6 +275,17 @@ const { headline, description, frameLabel = "FIG. 1 — PATCH COMMUNITY", compac
         position: relative;
     }
 
+    /* Lightbulb positioned relative to title */
+    .content-frame .hero-sketch-lightbulb {
+        position: absolute;
+        top: -80px;
+        left: -100px;
+        width: 120px;
+        opacity: 0.85;
+        filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.25)) brightness(0) invert(1);
+        pointer-events: none;
+    }
+
     .hero-content h1 {
         font-size: 3rem;
         font-weight: 400;
@@ -403,6 +421,12 @@ const { headline, description, frameLabel = "FIG. 1 — PATCH COMMUNITY", compac
             bottom: 0;
             left: 0;
         }
+
+        .content-frame .hero-sketch-lightbulb {
+            top: -60px;
+            left: -20px;
+            width: 100px;
+        }
     }
 
     @media (max-width: 768px) {
@@ -421,6 +445,10 @@ const { headline, description, frameLabel = "FIG. 1 — PATCH COMMUNITY", compac
         }
 
         .hero-annotations {
+            display: none;
+        }
+
+        .content-frame .hero-sketch-lightbulb {
             display: none;
         }
     }
