@@ -55,7 +55,7 @@ def main():
 
     # Light blue color matching the site's blue palette
     # Using a very soft blue that will work well as a subtle background pattern
-    light_blue = (190, 219, 255)  # Matches --color-blue-200
+    light_blue = (160, 200, 240)  # Slightly darker blue
 
     if not os.path.exists(input_logo):
         print(f"Error: Input logo not found at {input_logo}")
