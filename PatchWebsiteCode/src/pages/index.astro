@@ -89,13 +89,24 @@ const heroCollage = [
 		 ============================================ -->
 	<section class="what-patch-does" id="about">
 		<SectionHeader
-			label="How it works"
-			title="Programmes, community, and mentorship"
-			subtitle="Patch's mission is to find and support talented youth from all over Ireland, helping them become the next generation of impactful leaders across science, technology, research, and policy."
+			title="What is Patch?"
 		/>
 
-		<div class="intro-text">
-			<p>We do this through running multiple interconnected initiatives, all aimed at taking young people seriously, raising their ambitions, connecting them with energetic peers who they'll form lifelong connections with, and learning directly from Ireland's top founders, experts, and older peers.</p>
+		<div class="what-patch-content">
+			<div class="what-patch-body">
+				<p class="opening-statement">Talent is everywhere. Opportunity is not.</p>
+				<p>Patch's mission is to identify the most talented young people in Ireland and accelerate their development by raising their ambitions, increasing their confidence, and creating more opportunities for them to succeed.</p>
+				<p>We do this through a small number of interconnected programmes where participants are surrounded by exceptional peers and mentors who take them seriously — and who believe they're capable of far more than they might think.</p>
+				<p>Patch doesn't prescribe paths. Instead, it creates the conditions where ambition compounds: through a thousand interactions where mentors challenge participants to think differently, peers push each other beyond what they'd attempt alone, and older alumni set inspiring examples.</p>
+			</div>
+			<div class="what-patch-quote">
+				<div class="founder-quote">
+					<span class="tape tape-tl"></span>
+					<span class="tape tape-tr"></span>
+					<blockquote>"Patch exists to give curious, ambitious young people a space and community where they can realise their potential"</blockquote>
+					<cite>— Tom McCarthy, Founder</cite>
+				</div>
+			</div>
 		</div>
 	</section>
 
@@ -450,16 +461,94 @@ const heroCollage = [
 		padding: 48px 24px 24px;
 	}
 
-	.intro-text {
-		max-width: 800px;
+	.what-patch-content {
+		display: flex;
+		gap: 48px;
+		max-width: 1100px;
 		margin: 0 auto;
 		padding: 0 24px;
+		align-items: flex-start;
 	}
 
-	.intro-text p {
+	.what-patch-body {
+		flex: 1;
+		max-width: 65%;
+	}
+
+	.what-patch-body p {
 		font-size: var(--text-md);
 		line-height: 1.7;
 		color: var(--text-secondary);
+		margin-bottom: 1.25em;
+	}
+
+	.what-patch-body p:last-child {
+		margin-bottom: 0;
+	}
+
+	/* Opening statement - larger serif emphasis */
+	.what-patch-body .opening-statement {
+		font-family: Georgia, 'Times New Roman', serif;
+		font-size: 1.35rem;
+		font-weight: 500;
+		line-height: 1.5;
+		color: var(--text-primary);
+		margin-bottom: 1.5em;
+	}
+
+	.what-patch-quote {
+		flex: 0 0 30%;
+		position: relative;
+	}
+
+	.founder-quote {
+		position: relative;
+		padding: 20px;
+		background: rgba(255, 255, 255, 0.85);
+		border: 1px solid #ddd;
+		box-shadow: 2px 2px 8px rgba(0,0,0,0.08);
+		transform: rotate(1deg);
+	}
+
+	/* Tape effects - matching Field Notes */
+	.founder-quote .tape {
+		position: absolute;
+		width: 30px;
+		height: 12px;
+		background: rgba(255, 230, 150, 0.75);
+		border: 1px solid rgba(200, 180, 100, 0.4);
+		z-index: 2;
+	}
+
+	.founder-quote .tape-tl {
+		top: -6px;
+		left: 12px;
+		transform: rotate(-15deg);
+	}
+
+	.founder-quote .tape-tr {
+		top: -6px;
+		right: 12px;
+		transform: rotate(12deg);
+	}
+
+	/* Quote typography - matching entry-quote styling */
+	.founder-quote blockquote {
+		font-family: Georgia, 'Times New Roman', serif;
+		font-size: 0.95rem;
+		line-height: 1.7;
+		color: #2a4a7a;
+		margin: 0 0 12px 0;
+		font-style: italic;
+	}
+
+	.founder-quote cite {
+		display: block;
+		font-family: 'Courier New', monospace;
+		font-size: 0.7rem;
+		font-style: normal;
+		color: #888;
+		letter-spacing: 0.05em;
 	}
 
 	/* Section: Programmes */
@@ -1018,6 +1107,21 @@ const heroCollage = [
 	}
 
 	@media (max-width: 768px) {
+		.what-patch-content {
+			flex-direction: column;
+		}
+
+		.what-patch-body {
+			max-width: 100%;
+		}
+
+		.what-patch-quote {
+			flex: none;
+			width: 100%;
+			max-width: 320px;
+			margin: 24px auto 0;
+		}
+
 		.initiatives-grid {
 			grid-template-columns: 1fr;
 		}
