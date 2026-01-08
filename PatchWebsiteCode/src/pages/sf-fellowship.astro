@@ -1,0 +1,578 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// UI Components
+import Divider from '../components/ui/Divider.astro';
+import PolaroidCluster from '../components/ui/PolaroidCluster.astro';
+
+// Section Components
+import Header from '../components/sections/Header.astro';
+import Hero from '../components/sections/Hero.astro';
+import Footer from '../components/sections/Footer.astro';
+
+// Hero polaroid photos
+const heroPolaroids = [
+	{ src: "/SFFellowship/SFFellowshipGoldenGateGroup.JPG", alt: "Fellows at Golden Gate Bridge", caption: "Golden Gate '25" },
+	{ src: "/SFFellowship/PatrickCollisonWithGroupOfPatchersInSFFellowship.png", alt: "Meeting Patrick Collison at Stripe", caption: "Lunch with Patrick" },
+	{ src: "/SFFellowship/sarah-friar-chat.jpg", alt: "Chat with Sarah Friar", caption: "OpenAI visit" },
+	{ src: "/SFFellowship/forge-robotics-group-photo.jpg", alt: "Forge Robotics visit", caption: "Forge Robotics" },
+	{ src: "/SFFellowship/stripe-statue-group-photo.jpg", alt: "Group at Stripe", caption: "SF Fellows '25" }, // Mobile only
+];
+
+// What Fellows do
+const activities = [
+	{ text: "Meet founders, engineers, researchers, and operators working on ambitious companies" },
+	{ text: "Spend time inside leading technology organisations" },
+	{ text: "Arrange their own meetings through cold outreach and curiosity" },
+	{ text: "Follow interests wherever they lead — software, hardware, robotics, AI, biotech, and more" },
+];
+
+// Who Fellows meet
+const meetings = [
+	{ name: "Patrick Collison", company: "at Stripe" },
+	{ name: "Sarah Friar and the team", company: "at OpenAI" },
+	{ name: "Conversations", company: "at Y Combinator" },
+	{ name: "Irish founders building in SF", company: "at Solidroad, Forge Robotics, and Ulysses" },
+];
+---
+
+<Layout title="SF Fellowship - Patch">
+	<Header logoText="Patch" />
+
+	<!-- Hero Section -->
+	<Hero
+		headline="SF Fellowship"
+		description="A short, high-intensity immersion in San Francisco for exceptional young Irish founders & engineers."
+		frameLabel="FIG. 1 — SF FELLOWSHIP"
+		compact={true}
+	>
+		<Fragment slot="media">
+			<PolaroidCluster items={heroPolaroids} />
+		</Fragment>
+	</Hero>
+
+	<!-- Page wrapper for logo accents -->
+	<div class="page-content">
+		<!-- Decorative logo accents -->
+		<div class="logo-accent logo-accent-left" aria-hidden="true"></div>
+		<div class="logo-accent logo-accent-right" aria-hidden="true"></div>
+
+		<Divider />
+
+		<!-- Introduction -->
+		<section class="content-section">
+			<div class="content-wrapper">
+				<p class="lead-text">
+					The Patch SF Fellowship brings a small group of outstanding young people to San Francisco for around <strong>10 days</strong>. It's not an open-application programme — it's something we run selectively for people we believe will benefit most.
+				</p>
+				<p class="goal-text">
+					The goal is simple: <strong>accelerate some of Ireland's most talented youth and raise their aspirations</strong> by placing them inside one of the world's most ambitious technology ecosystems.
+				</p>
+			</div>
+		</section>
+
+		<Divider />
+
+		<!-- What it looks like -->
+		<section class="content-section">
+			<div class="content-wrapper">
+				<div class="section-header">
+					<span class="section-label">WHAT IT LOOKS LIKE</span>
+					<h2>A window into the world's tech capital</h2>
+				</div>
+
+				<p class="section-intro">
+					We recently ran the Fellowship for a second time, bringing <strong>12 engineers from Ireland</strong> to San Francisco.
+				</p>
+
+				<div class="activities-grid">
+					<div class="activities-list">
+						<span class="list-label">Over the course of the trip, Fellows:</span>
+						<ul>
+							{activities.map((activity) => (
+								<li>{activity.text}</li>
+							))}
+						</ul>
+						<p class="activities-note">
+							There's no rigid curriculum. The Fellowship combines a strong core schedule with room for Fellows to explore independently.
+						</p>
+					</div>
+					<div class="activities-photo">
+						<div class="photo-frame">
+							<img src="/SFFellowship/visitng-ulysses-factory.jpg" alt="Fellows visiting Ulysses factory" loading="lazy" />
+							<span class="photo-caption">Visiting Ulysses factory floor</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<Divider />
+
+		<!-- Who Fellows meet -->
+		<section class="content-section">
+			<div class="content-wrapper">
+				<div class="section-header">
+					<span class="section-label">WHO FELLOWS MEET</span>
+					<h2>Warm introductions to San Francisco</h2>
+				</div>
+
+				<p class="section-intro">
+					Fellows receive a warm introduction to San Francisco through a mix of formal visits and informal conversations.
+				</p>
+
+				<div class="meetings-grid">
+					<div class="meetings-photo">
+						<div class="photo-frame photo-frame-alt">
+							<img src="/SFFellowship/plymouth-street-fireside-good-photo.jpg" alt="Fireside chat in SF" loading="lazy" />
+							<span class="photo-caption">Plymouth Street fireside</span>
+						</div>
+					</div>
+					<div class="meetings-list">
+						<span class="list-label">Recent hosts and meetings included:</span>
+						<ul class="meetings-items">
+							{meetings.map((meeting) => (
+								<li>
+									<strong>{meeting.name}</strong> <span class="meeting-company">{meeting.company}</span>
+								</li>
+							))}
+						</ul>
+						<p class="meetings-note">
+							Many people also help behind the scenes — hosting Fellows, inviting them to events, introducing friends, or simply taking the time to talk.
+						</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<Divider />
+
+		<!-- Gallery section -->
+		<section class="gallery-section">
+			<div class="content-wrapper">
+				<div class="section-header centered">
+					<span class="section-label">MOMENTS FROM THE FELLOWSHIP</span>
+				</div>
+				<div class="gallery-grid">
+					<div class="gallery-item gallery-item-1">
+						<img src="/SFFellowship/cosy-fireside.jpg" alt="Cosy fireside chat" loading="lazy" />
+					</div>
+					<div class="gallery-item gallery-item-2">
+						<img src="/SFFellowship/ulysses-group-2.jpg" alt="Group at Ulysses" loading="lazy" />
+					</div>
+					<div class="gallery-item gallery-item-3">
+						<img src="/SFFellowship/stripe-statue-group-photo.jpg" alt="Group photo at Stripe" loading="lazy" />
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<Divider />
+
+		<!-- Contact -->
+		<!-- <section class="contact-section">
+			<div class="contact-content">
+				<p class="contact-text">
+					The SF Fellowship is invitation-only. If you're interested in learning more or think you'd be a good fit, reach out to us.
+				</p>
+				<p class="contact-email">
+					<a href="mailto:team@joinpatch.org">team@joinpatch.org</a>
+				</p>
+			</div>
+		</section> -->
+
+	</div><!-- end page-content -->
+
+	<Footer />
+</Layout>
+
+<style>
+	/* Page content wrapper */
+	.page-content {
+		position: relative;
+		overflow: hidden;
+	}
+
+	/* Decorative logo accents */
+	.logo-accent {
+		position: absolute;
+		width: 220px;
+		height: 220px;
+		background-image: url('/LightBlueLogoNoBackground.png');
+		background-size: contain;
+		background-repeat: no-repeat;
+		background-position: center;
+		opacity: 0.15;
+		pointer-events: none;
+		z-index: 0;
+	}
+
+	.logo-accent-left {
+		left: 30px;
+		top: 400px;
+		transform: rotate(-12deg);
+	}
+
+	.logo-accent-right {
+		right: 30px;
+		top: 1200px;
+		transform: rotate(8deg);
+	}
+
+	@media (max-width: 1200px) {
+		.logo-accent {
+			width: 180px;
+			height: 180px;
+			opacity: 0.12;
+		}
+
+		.logo-accent-left {
+			left: 15px;
+		}
+
+		.logo-accent-right {
+			right: 15px;
+		}
+	}
+
+	@media (max-width: 900px) {
+		.logo-accent {
+			display: none;
+		}
+	}
+
+	/* Content sections */
+	.content-section {
+		padding: 56px 24px;
+	}
+
+	.content-wrapper {
+		max-width: 900px;
+		margin: 0 auto;
+		position: relative;
+		z-index: 1;
+	}
+
+	/* Lead text */
+	.lead-text {
+		font-family: Georgia, 'Times New Roman', serif;
+		font-size: 1.25rem;
+		line-height: 1.7;
+		color: var(--text-secondary);
+		margin-bottom: 24px;
+		max-width: 720px;
+	}
+
+	.lead-text strong {
+		color: var(--text-primary);
+	}
+
+	.goal-text {
+		font-family: Georgia, 'Times New Roman', serif;
+		font-size: 1.125rem;
+		line-height: 1.7;
+		color: var(--text-secondary);
+		padding: 20px 24px;
+		background: linear-gradient(135deg, rgba(74, 127, 191, 0.08) 0%, rgba(74, 127, 191, 0.04) 100%);
+		border-left: 3px solid var(--color-accent-blue);
+		border-radius: 0 4px 4px 0;
+	}
+
+	.goal-text strong {
+		color: var(--text-primary);
+	}
+
+	/* Section headers */
+	.section-header {
+		margin-bottom: 24px;
+	}
+
+	.section-header.centered {
+		text-align: center;
+	}
+
+	.section-label {
+		display: block;
+		font-family: 'Courier New', monospace;
+		font-size: 0.65rem;
+		font-weight: 700;
+		letter-spacing: 0.15em;
+		color: var(--color-accent-blue);
+		margin-bottom: 8px;
+	}
+
+	.section-header h2 {
+		font-family: Georgia, 'Times New Roman', serif;
+		font-size: 1.75rem;
+		font-weight: 400;
+		color: var(--text-primary);
+		margin: 0;
+	}
+
+	.section-intro {
+		font-size: 1.0625rem;
+		line-height: 1.7;
+		color: var(--text-secondary);
+		margin-bottom: 32px;
+	}
+
+	.section-intro strong {
+		color: var(--text-primary);
+	}
+
+	/* Activities grid */
+	.activities-grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 48px;
+		align-items: start;
+	}
+
+	.list-label {
+		display: block;
+		font-family: 'Courier New', monospace;
+		font-size: 0.75rem;
+		font-weight: 600;
+		letter-spacing: 0.05em;
+		color: var(--text-muted);
+		margin-bottom: 16px;
+	}
+
+	.activities-list ul {
+		list-style: none;
+		padding: 0;
+		margin: 0 0 24px 0;
+	}
+
+	.activities-list li {
+		position: relative;
+		padding-left: 20px;
+		margin-bottom: 12px;
+		font-size: var(--text-base);
+		line-height: 1.6;
+		color: var(--text-secondary);
+	}
+
+	.activities-list li::before {
+		content: '→';
+		position: absolute;
+		left: 0;
+		color: var(--color-accent-blue);
+		font-weight: 600;
+	}
+
+	.activities-note {
+		font-size: var(--text-sm);
+		color: var(--text-muted);
+		font-style: italic;
+		line-height: 1.6;
+	}
+
+	/* Photo frames */
+	.photo-frame {
+		position: relative;
+		background: #fff;
+		padding: 8px;
+		box-shadow:
+			0 4px 12px rgba(0, 0, 0, 0.1),
+			0 2px 4px rgba(0, 0, 0, 0.06);
+		transform: rotate(2deg);
+	}
+
+	.photo-frame-alt {
+		transform: rotate(-2deg);
+	}
+
+	.photo-frame img {
+		width: 100%;
+		height: auto;
+		display: block;
+		aspect-ratio: 4 / 3;
+		object-fit: cover;
+	}
+
+	.photo-caption {
+		display: block;
+		font-family: 'Comic Sans MS', 'Chalkboard', cursive;
+		font-size: 0.75rem;
+		color: #2a3a5a;
+		text-align: center;
+		padding: 8px 4px 4px;
+	}
+
+	/* Meetings grid */
+	.meetings-grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 48px;
+		align-items: start;
+	}
+
+	.meetings-items {
+		list-style: none;
+		padding: 0;
+		margin: 0 0 24px 0;
+	}
+
+	.meetings-items li {
+		padding: 12px 0;
+		border-bottom: 1px solid var(--default-border-color);
+		font-size: var(--text-base);
+		line-height: 1.5;
+	}
+
+	.meetings-items li:last-child {
+		border-bottom: none;
+	}
+
+	.meetings-items strong {
+		color: var(--text-primary);
+	}
+
+	.meeting-company {
+		color: var(--text-muted);
+	}
+
+	.meetings-note {
+		font-size: var(--text-sm);
+		color: var(--text-muted);
+		line-height: 1.6;
+	}
+
+	/* Gallery section */
+	.gallery-section {
+		padding: 56px 24px;
+		background: linear-gradient(180deg, var(--color-cream-50) 0%, #fff 100%);
+	}
+
+	.gallery-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 16px;
+		margin-top: 32px;
+	}
+
+	.gallery-item {
+		overflow: hidden;
+		border-radius: 4px;
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+	}
+
+	.gallery-item img {
+		width: 100%;
+		height: 200px;
+		object-fit: cover;
+		display: block;
+		transition: transform 0.3s ease;
+	}
+
+	.gallery-item:hover img {
+		transform: scale(1.05);
+	}
+
+	.gallery-item-1 {
+		transform: rotate(-1deg);
+	}
+
+	.gallery-item-2 {
+		transform: rotate(0.5deg);
+	}
+
+	.gallery-item-3 {
+		transform: rotate(-0.5deg);
+	}
+
+	/* Contact section */
+	.contact-section {
+		padding: 56px 24px;
+	}
+
+	.contact-content {
+		max-width: 600px;
+		margin: 0 auto;
+		text-align: center;
+	}
+
+	.contact-text {
+		font-family: Georgia, 'Times New Roman', serif;
+		font-size: 1.125rem;
+		line-height: 1.7;
+		color: var(--text-secondary);
+		margin-bottom: 20px;
+	}
+
+	.contact-email {
+		margin: 0;
+	}
+
+	.contact-email a {
+		font-family: 'Courier New', monospace;
+		font-size: 1rem;
+		color: var(--color-accent-blue);
+		text-decoration: none;
+		padding: 12px 24px;
+		border: 1px solid var(--color-accent-blue);
+		border-radius: 4px;
+		display: inline-block;
+		transition: all 0.15s ease;
+	}
+
+	.contact-email a:hover {
+		background: var(--color-accent-blue);
+		color: #fff;
+	}
+
+	/* Responsive */
+	@media (max-width: 768px) {
+		.content-section {
+			padding: 40px 16px;
+		}
+
+		.lead-text {
+			font-size: 1.125rem;
+		}
+
+		.section-header h2 {
+			font-size: 1.5rem;
+		}
+
+		.activities-grid,
+		.meetings-grid {
+			grid-template-columns: 1fr;
+			gap: 32px;
+		}
+
+		.activities-photo {
+			order: -1;
+		}
+
+		.gallery-grid {
+			grid-template-columns: 1fr;
+			gap: 12px;
+		}
+
+		.gallery-item img {
+			height: 180px;
+		}
+
+		.gallery-item {
+			transform: none;
+		}
+
+		.photo-frame {
+			max-width: 300px;
+			margin: 0 auto;
+		}
+	}
+
+	@media (max-width: 480px) {
+		.goal-text {
+			padding: 16px 20px;
+			font-size: 1rem;
+		}
+
+		.contact-section {
+			padding: 40px 16px;
+		}
+	}
+</style>
