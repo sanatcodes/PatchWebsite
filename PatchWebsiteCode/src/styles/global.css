@@ -185,15 +185,17 @@ h2, h3 {
 
 @media (max-width: 768px) {
     .main-container {
-        margin-left: 24px;
-        margin-right: 24px;
+        margin-left: 0;
+        margin-right: 0;
+        border-left: none;
+        border-right: none;
     }
 }
 
 @media (max-width: 480px) {
     .main-container {
-        margin-left: 12px;
-        margin-right: 12px;
+        margin-left: 0;
+        margin-right: 0;
     }
 }
 
