@@ -17,7 +17,7 @@ const heroPolaroids = [
 	{ src: "/SFFellowship/PatrickCollisonWithGroupOfPatchersInSFFellowship.png", alt: "Meeting Patrick Collison at Stripe", caption: "Lunch with Patrick" },
 	{ src: "/SFFellowship/sarah-friar-chat.jpg", alt: "Chat with Sarah Friar", caption: "OpenAI visit" },
 	{ src: "/SFFellowship/forge-robotics-group-photo.jpg", alt: "Forge Robotics visit", caption: "Forge Robotics" },
-	{ src: "/SFFellowship/stripe-statue-group-photo.jpg", alt: "Group at Stripe", caption: "SF Fellows '25" }, // Mobile only
+	{ src: "/SFFellowship/SFFellowshipGoldenGateGroup.JPG", alt: "Group at Golden Gate", caption: "SF Fellows '25" }, // Mobile only
 ];
 
 // What Fellows do
@@ -264,7 +264,19 @@ const meetings = [
 
 	@media (max-width: 900px) {
 		.logo-accent {
-			display: none;
+			width: 120px;
+			height: 120px;
+			opacity: 0.1;
+		}
+
+		.logo-accent-left {
+			left: 10px;
+			top: 300px;
+		}
+
+		.logo-accent-right {
+			right: 10px;
+			top: 900px;
 		}
 	}
 
