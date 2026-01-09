@@ -1,0 +1,984 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// UI Components
+import Button from '../components/ui/Button.astro';
+import Divider from '../components/ui/Divider.astro';
+import SectionHeader from '../components/ui/SectionHeader.astro';
+import FaqGrid from '../components/ui/FaqGrid.astro';
+import PolaroidCluster from '../components/ui/PolaroidCluster.astro';
+
+// Section Components
+import Header from '../components/sections/Header.astro';
+import Hero from '../components/sections/Hero.astro';
+import MentorsSection from '../components/sections/MentorsSection.astro';
+import FieldNotesSection from '../components/sections/FieldNotesSection.astro';
+import Footer from '../components/sections/Footer.astro';
+
+// Programme Components
+import QuoteSection from '../components/programme/QuoteSection.astro';
+
+// Hero polaroid photos
+const heroPolaroids = [
+	{ src: "/TheSummerRoboDogCrowd.jpg", alt: "Robodog demo at Patch", caption: "Demo Day '24" },
+	{ src: "/SummerProgrammeRobodogStage.jpg", alt: "Presenting on stage", caption: "On stage!" },
+	{ src: "/SummerProgrammeGroupWork1.jpg", alt: "Teams working together", caption: "Building together" },
+	{ src: "/Tree25Girls.jpg", alt: "Patch community gathering", caption: "Summer '25" },
+	{ src: "/SummerProgrammeCrowd.jpg", alt: "Summer programme cohort", caption: "The cohort" }, // Mobile only
+];
+
+// Mentor data
+const mentors = [
+	{ name: "Patrick Collison", title: "Co-founder and CEO of Stripe", imageSrc: "/FoundersAndMentors/PatrickCollison.jpg", link: "https://patrickcollison.com/" },
+	{ name: "Sarah Friar", title: "CFO of OpenAI & Co-Launcher of Ladies Who Launch", imageSrc: "/FoundersAndMentors/SarahFriar.jpg", link: "https://www.linkedin.com/in/sarah-friar/" },
+	{ name: "Prof. Luke O'Neil", title: "Professor of Biology at Trinity College Dublin", imageSrc: "/FoundersAndMentors/LukeONeil.jpg", link: "https://x.com/laoneill111" },
+	{ name: "Niamh Donnelly", title: "Co-Founder & CTO of Akara Robotics", imageSrc: "/FoundersAndMentors/NiamhDonnelly.jpg", link: "https://www.linkedin.com/in/niamh-donnelly-akara-robotics/" },
+	{ name: "Áine Kerr", title: "Co-Founder and COO at Kinzen, previously Facebook", imageSrc: "/FoundersAndMentors/AineKerr.jpg", link: "https://ainekerr.org/" },
+	{ name: "Patrick Walsh", title: "Founder of Dogpatch Labs", imageSrc: "/FoundersAndMentors/PatrickWalsh.jpg", link: "https://twitter.com/pwlsh" },
+	{ name: "Celine Halioua", title: "Founder of Loyal, helping dogs live longer", imageSrc: "/FoundersAndMentors/CelineHalioua.jpg", link: "https://www.celinehh.com/" },
+	{ name: "James Whelton", title: "Founder of CoderDojo", imageSrc: "/FoundersAndMentors/JamesWhelton.jpg", link: "https://whelton.io/" },
+];
+
+// FAQ data
+const faqs = [
+	{
+		question: "Do I need an idea or a team?",
+		answer: "No. Teams and ideas form during bootcamp. You'll meet the cohort, explore directions together, and find collaborators naturally."
+	},
+	{
+		question: "Does my project have to be a startup?",
+		answer: "No. Most projects aren't. Research, hardware, science, software, and social projects are all welcome. The goal is learning by building."
+	},
+	{
+		question: "Will Patch take equity or IP?",
+		answer: "No. Patch is a non-profit. <strong>You keep everything you build.</strong>"
+	},
+	{
+		question: "Can I apply again if I'm not accepted?",
+		answer: "Yes — and many participants were accepted on their second or third application. If you're serious, keep applying."
+	},
+	{
+		question: "Do I need to know how to code?",
+		answer: "No. We value builders of all kinds: designers, scientists, organisers, leaders, and generalists. What matters is curiosity and initiative."
+	},
+	{
+		question: "Is there a cost to attend?",
+		answer: "No. Patch is <strong>completely free</strong>. We cover accommodation, meals, and programme costs. Stipends are available for those who need them."
+	}
+];
+---
+
+<Layout title="Summer Programme - Patch">
+	<Header logoText="Patch" />
+
+	<!-- Hero Section -->
+	<Hero
+		headline="Summer Programme"
+		description="For talented young technologists, scientists & entrepreneurs. Build something real, alongside people who care just as much as you do."
+		frameLabel="FIG. 1 — SUMMER PROGRAMME"
+		compact={true}
+	>
+		<Fragment slot="actions">
+			<Button variant="cta" href="https://apply.joinpatch.org/">
+				Apply Now
+			</Button>
+			<Button variant="secondary" href="#overview">
+				Learn more
+			</Button>
+		</Fragment>
+		<Fragment slot="media">
+			<PolaroidCluster items={heroPolaroids} />
+		</Fragment>
+	</Hero>
+
+	<!-- Page wrapper for logo accents -->
+	<div class="page-content">
+		<!-- Decorative logo accents -->
+		<div class="logo-accent logo-accent-left" aria-hidden="true"></div>
+		<div class="logo-accent logo-accent-right" aria-hidden="true"></div>
+
+		<Divider />
+
+		<!-- Overview -->
+		<section class="content-section" id="overview">
+			<div class="content-wrapper">
+				<p class="lead-text">
+					The Patch Summer Programme is a full-time, in-person programme for exceptional people aged <strong>16–21</strong> who want to <strong>build, research, or explore ambitious ideas seriously</strong> — alongside peers who care just as much as they do.
+				</p>
+				<p class="goal-text">
+					It's free to attend. We cover accommodation, meals, and core costs so you can focus entirely on the work. This programme is the main gateway into the wider <strong>Patch community</strong> — a long-term network of builders, scientists, technologists, and founders who continue to support each other long after the summer ends.
+				</p>
+			</div>
+		</section>
+
+		<Divider />
+
+		<!-- What you'll do -->
+		<section class="content-section">
+			<div class="content-wrapper">
+				<div class="section-header">
+					<span class="section-label">WHAT YOU'LL DO</span>
+					<h2>Seven weeks of building, learning, and growing</h2>
+				</div>
+
+				<div class="features-grid">
+					<div class="feature-card">
+						<span class="feature-number">01</span>
+						<h3>Work on something real</h3>
+						<p>Spend the summer working in a small team on a project you care about — anything from software or hardware to research, science, biotech, or social initiatives. Most projects are <strong>not startups</strong>. The goal is learning by building.</p>
+					</div>
+
+					<div class="feature-card">
+						<span class="feature-number">02</span>
+						<h3>Learn by doing</h3>
+						<p>Patch is unstructured by design. You'll set your own goals, run your own experiments, and push past your previous limits — with support when you need it.</p>
+					</div>
+
+					<div class="feature-card">
+						<span class="feature-number">03</span>
+						<h3>Learn from people who've done it</h3>
+						<p>Throughout the summer, you'll meet founders, researchers, engineers, and leaders who share practical advice and hard-won lessons through talks, workshops, and informal conversations.</p>
+					</div>
+
+					<div class="feature-card">
+						<span class="feature-number">04</span>
+						<h3>Join a community for the long term</h3>
+						<p>After the summer, you become part of the Patch alumni community — a tight-knit, growing network that stays connected through meetups, mentorship, collaborations, and new opportunities.</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<Divider />
+
+		<!-- Testimonial -->
+		<FieldNotesSection
+			testimonials={[
+				{
+					quote: `<span class="highlight">Growing up in rural Kerry, I'd never had anyone to talk to about genetics or AI.</span> At Patch, I finally found people like me.`,
+					authorName: "Conor Casey",
+					authorTitle: "Patch 2020",
+					date: "15/08/2020",
+					entryNum: "#047"
+				}
+			]}
+		/>
+
+		<Divider />
+
+		<!-- How it works -->
+		<section class="content-section">
+			<div class="content-wrapper">
+				<div class="section-header">
+					<span class="section-label">HOW IT WORKS</span>
+					<h2>From application to Demo Day</h2>
+				</div>
+
+				<p class="section-intro">
+					We cover everything so you can focus on what matters — <strong>building</strong>. That means accommodation in Dublin near Dogpatch Labs, food, a hardware budget, and stipends for those who need them.
+				</p>
+
+				<div class="steps-grid">
+					<div class="step-item">
+						<div class="step-number">1</div>
+						<div class="step-content">
+							<h3>Apply</h3>
+							<p>Tell us about what you've built or explored before — a science experiment, a game, a blog, a robot, a community, a curiosity you followed. We care far more about <strong>initiative</strong> than credentials.</p>
+						</div>
+					</div>
+
+					<div class="step-item">
+						<div class="step-number">2</div>
+						<div class="step-content">
+							<h3>Bootcamp</h3>
+							<p>The programme starts with a three-day bootcamp. You'll meet the cohort, form teams, explore ideas, and set the direction for the summer.</p>
+						</div>
+					</div>
+
+					<div class="step-item">
+						<div class="step-number">3</div>
+						<div class="step-content">
+							<h3>Build</h3>
+							<p>For the next seven weeks, you'll work full-time on your project — building, researching, talking to users, and learning fast. Each week includes workshops, talks, and mentor sessions.</p>
+						</div>
+					</div>
+
+					<div class="step-item">
+						<div class="step-number">4</div>
+						<div class="step-content">
+							<h3>Demo Day</h3>
+							<p>The programme ends with Patch Demo Day, where teams present what they built and what they learned to the wider Patch community.</p>
+						</div>
+					</div>
+				</div>
+
+				<div class="steps-photos">
+					<div class="photo-frame rotate-ccw">
+						<img src="/JohnCollisonWithPatchers.jpg" alt="John Collison with Patchers" loading="lazy" />
+						<span class="photo-caption">John Collison visit</span>
+					</div>
+					<div class="photo-frame rotate-cw">
+						<img src="/SummerProgrammeGroupWork2.jpg" alt="Teams working on projects" loading="lazy" />
+						<span class="photo-caption">Building together</span>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<Divider />
+
+		<!-- Mentors Section -->
+		<MentorsSection
+			label="Learn from the best"
+			title="Mentors & speakers"
+			subtitle="Patch participants learn directly from Ireland's top founders, scientists, executives, and older Patch alumni who share their experience and advice."
+			mentors={mentors}
+		/>
+
+		<Divider />
+
+		<!-- Practical details -->
+		<section class="content-section details-section">
+			<div class="content-wrapper">
+				<div class="section-header centered">
+					<span class="section-label">PRACTICAL DETAILS</span>
+					<h2>Everything you need to know</h2>
+				</div>
+
+				<div class="details-grid">
+					<div class="detail-card">
+						<span class="detail-icon">&#x1F4CD;</span>
+						<h3>Location</h3>
+						<p>Patch is <strong>full-time and in-person</strong>, based in Dublin. Day-to-day work happens in Dogpatch Labs, with visits to other startups and hubs.</p>
+					</div>
+
+					<div class="detail-card">
+						<span class="detail-icon">&#x1F4C5;</span>
+						<h3>Dates</h3>
+						<p>The <strong>2026 programme runs from early July to mid-August</strong> — seven weeks of focused building.</p>
+					</div>
+
+					<div class="detail-card">
+						<span class="detail-icon">&#x1F4B0;</span>
+						<h3>Cost</h3>
+						<p>Patch is <strong>completely free</strong>. We cover accommodation, weekday meals, and programme costs. Stipends available so finances never prevent participation.</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<Divider />
+
+		<!-- Who should apply -->
+		<section class="content-section">
+			<div class="content-wrapper">
+				<div class="section-header">
+					<span class="section-label">WHO SHOULD APPLY</span>
+					<h2>Is this for you?</h2>
+				</div>
+
+				<div class="eligibility-grid">
+					<div class="eligibility-card requirements">
+						<h3>Requirements</h3>
+						<ul>
+							<li>Aged <strong>16–21</strong> (soft upper limit)</li>
+							<li>Based in or studying in Ireland</li>
+							<li>Curious, ambitious, and motivated to build or explore something seriously</li>
+						</ul>
+					</div>
+
+					<div class="eligibility-card no-need">
+						<h3>You don't need</h3>
+						<ul>
+							<li>A startup idea</li>
+							<li>A team</li>
+							<li>Coding experience</li>
+						</ul>
+					</div>
+
+					<div class="eligibility-card do-need">
+						<h3>You do need</h3>
+						<ul>
+							<li>A track record of following your interests</li>
+							<li>Willingness to learn, collaborate, and take things seriously</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<Divider />
+
+		<!-- FAQs -->
+		<section class="faqs-section">
+			<SectionHeader title="Frequently Asked Questions" />
+			<FaqGrid items={faqs} />
+		</section>
+
+		<Divider />
+
+		<!-- After the summer -->
+		<section class="content-section">
+			<div class="content-wrapper">
+				<div class="section-header">
+					<span class="section-label">AFTER THE SUMMER</span>
+					<h2>The programme is just the beginning</h2>
+				</div>
+
+				<div class="after-grid">
+					<div class="after-content">
+						<p class="after-intro">Alumni stay involved through:</p>
+						<ul class="after-list">
+							<li>Meetups and events</li>
+							<li>Mentorship and collaboration</li>
+							<li>Fellowships and grants</li>
+							<li>Alumni-led projects and initiatives</li>
+						</ul>
+						<p class="after-note">Patch is built for the long term.</p>
+					</div>
+					<div class="after-photo">
+						<div class="photo-frame rotate-cw">
+							<img src="/AlumniFireside.jpg" alt="Alumni fireside gathering" loading="lazy" />
+							<span class="photo-caption">Alumni fireside</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<Divider />
+
+		<!-- Quote -->
+		<QuoteSection
+			quote="Patch exists to give curious, ambitious young people a space and community where they can realise their potential."
+			author="Tom McCarthy"
+			authorTitle="Patch Founder"
+			photoSrc="/TomMcCarthy.jpg"
+		/>
+
+		<Divider />
+
+		<!-- Apply CTA -->
+		<section class="cta-section">
+			<div class="cta-content">
+				<h2 class="cta-title">Ready to build something great?</h2>
+				<p class="cta-text">Applications for Summer Programme 2026 close in early March.</p>
+				<p class="cta-subtext">If you're curious, ambitious, and ready to take yourself seriously — we'd love to hear from you.</p>
+				<div class="cta-buttons">
+					<a href="https://apply.joinpatch.org/" class="btn-apply">Apply Now</a>
+				</div>
+				<p class="cta-contact">Questions? <a href="mailto:team@joinpatch.org">team@joinpatch.org</a></p>
+			</div>
+		</section>
+
+	</div><!-- end page-content -->
+
+	<Footer />
+</Layout>
+
+<style>
+	/* Page content wrapper */
+	.page-content {
+		position: relative;
+		overflow: hidden;
+	}
+
+	/* Decorative logo accents */
+	.logo-accent {
+		position: absolute;
+		width: 220px;
+		height: 220px;
+		background-image: url('/LightBlueLogoNoBackground.png');
+		background-size: contain;
+		background-repeat: no-repeat;
+		background-position: center;
+		opacity: 0.15;
+		pointer-events: none;
+		z-index: 0;
+	}
+
+	.logo-accent-left {
+		left: 30px;
+		top: 600px;
+		transform: rotate(-12deg);
+	}
+
+	.logo-accent-right {
+		right: 30px;
+		top: 2000px;
+		transform: rotate(8deg);
+	}
+
+	@media (max-width: 1200px) {
+		.logo-accent {
+			width: 180px;
+			height: 180px;
+			opacity: 0.12;
+		}
+
+		.logo-accent-left {
+			left: 15px;
+		}
+
+		.logo-accent-right {
+			right: 15px;
+		}
+	}
+
+	@media (max-width: 900px) {
+		.logo-accent {
+			width: 120px;
+			height: 120px;
+			opacity: 0.1;
+		}
+
+		.logo-accent-left {
+			left: 10px;
+			top: 400px;
+		}
+
+		.logo-accent-right {
+			right: 10px;
+			top: 1600px;
+		}
+	}
+
+	/* Content sections */
+	.content-section {
+		padding: 56px 24px;
+	}
+
+	.content-wrapper {
+		max-width: 900px;
+		margin: 0 auto;
+		position: relative;
+		z-index: 1;
+	}
+
+	/* Lead text */
+	.lead-text {
+		font-family: Georgia, 'Times New Roman', serif;
+		font-size: 1.25rem;
+		line-height: 1.7;
+		color: var(--text-secondary);
+		margin-bottom: 24px;
+		max-width: 780px;
+	}
+
+	.lead-text strong {
+		color: var(--text-primary);
+	}
+
+	.goal-text {
+		font-family: Georgia, 'Times New Roman', serif;
+		font-size: 1.125rem;
+		line-height: 1.7;
+		color: var(--text-secondary);
+		padding: 20px 24px;
+		background: linear-gradient(135deg, rgba(74, 127, 191, 0.08) 0%, rgba(74, 127, 191, 0.04) 100%);
+		border-left: 3px solid var(--color-accent-blue);
+		border-radius: 0 4px 4px 0;
+	}
+
+	.goal-text strong {
+		color: var(--text-primary);
+	}
+
+	/* Section headers */
+	.section-header {
+		margin-bottom: 24px;
+	}
+
+	.section-header.centered {
+		text-align: center;
+	}
+
+	.section-label {
+		display: block;
+		font-family: 'Courier New', monospace;
+		font-size: 0.65rem;
+		font-weight: 700;
+		letter-spacing: 0.15em;
+		color: var(--color-accent-blue);
+		margin-bottom: 8px;
+	}
+
+	.section-header h2 {
+		font-family: Georgia, 'Times New Roman', serif;
+		font-size: 1.75rem;
+		font-weight: 400;
+		color: var(--text-primary);
+		margin: 0;
+	}
+
+	.section-intro {
+		font-size: 1.0625rem;
+		line-height: 1.7;
+		color: var(--text-secondary);
+		margin-bottom: 32px;
+	}
+
+	.section-intro strong {
+		color: var(--text-primary);
+	}
+
+	/* Features grid - What you'll do */
+	.features-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 24px;
+	}
+
+	.feature-card {
+		position: relative;
+		padding: 24px;
+		background: #fff;
+		border: 1px solid var(--default-border-color);
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+	}
+
+	.feature-number {
+		display: block;
+		font-family: 'Courier New', monospace;
+		font-size: 0.7rem;
+		font-weight: 700;
+		letter-spacing: 0.1em;
+		color: var(--color-accent-blue);
+		margin-bottom: 12px;
+	}
+
+	.feature-card h3 {
+		font-family: Georgia, 'Times New Roman', serif;
+		font-size: 1.125rem;
+		font-weight: 500;
+		color: var(--text-primary);
+		margin: 0 0 12px 0;
+	}
+
+	.feature-card p {
+		font-size: var(--text-sm);
+		line-height: 1.6;
+		color: var(--text-secondary);
+		margin: 0;
+	}
+
+	.feature-card p strong {
+		color: var(--text-primary);
+	}
+
+	/* Steps grid - How it works */
+	.steps-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 20px;
+		margin-bottom: 40px;
+	}
+
+	.step-item {
+		display: flex;
+		gap: 16px;
+		padding: 20px;
+		background: linear-gradient(135deg, rgba(74, 127, 191, 0.06) 0%, rgba(74, 127, 191, 0.02) 100%);
+		border-radius: 4px;
+	}
+
+	.step-number {
+		flex-shrink: 0;
+		width: 36px;
+		height: 36px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: var(--color-accent-blue);
+		color: #fff;
+		font-family: 'Courier New', monospace;
+		font-size: 1rem;
+		font-weight: 700;
+		border-radius: 50%;
+	}
+
+	.step-content h3 {
+		font-family: Georgia, 'Times New Roman', serif;
+		font-size: 1.0625rem;
+		font-weight: 500;
+		color: var(--text-primary);
+		margin: 0 0 8px 0;
+	}
+
+	.step-content p {
+		font-size: var(--text-sm);
+		line-height: 1.6;
+		color: var(--text-secondary);
+		margin: 0;
+	}
+
+	.step-content p strong {
+		color: var(--text-primary);
+	}
+
+	/* Steps photos */
+	.steps-photos {
+		display: flex;
+		justify-content: center;
+		gap: 24px;
+	}
+
+	.photo-frame {
+		position: relative;
+		background: #fff;
+		padding: 8px;
+		box-shadow:
+			0 4px 12px rgba(0, 0, 0, 0.1),
+			0 2px 4px rgba(0, 0, 0, 0.06);
+		max-width: 280px;
+	}
+
+	.photo-frame.rotate-cw {
+		transform: rotate(2deg);
+	}
+
+	.photo-frame.rotate-ccw {
+		transform: rotate(-2deg);
+	}
+
+	.photo-frame img {
+		width: 100%;
+		height: auto;
+		display: block;
+		aspect-ratio: 4 / 3;
+		object-fit: cover;
+	}
+
+	.photo-caption {
+		display: block;
+		font-family: 'Comic Sans MS', 'Chalkboard', cursive;
+		font-size: 0.75rem;
+		color: #2a3a5a;
+		text-align: center;
+		padding: 8px 4px 4px;
+	}
+
+	/* Details grid - Practical details */
+	.details-section {
+		background: linear-gradient(180deg, var(--color-cream-50) 0%, #fff 100%);
+	}
+
+	.details-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 24px;
+		margin-top: 32px;
+	}
+
+	.detail-card {
+		text-align: center;
+		padding: 24px 20px;
+		background: #fff;
+		border: 1px solid var(--default-border-color);
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+	}
+
+	.detail-icon {
+		display: block;
+		font-size: 1.5rem;
+		margin-bottom: 12px;
+	}
+
+	.detail-card h3 {
+		font-family: 'Courier New', monospace;
+		font-size: 0.8rem;
+		font-weight: 700;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: var(--text-primary);
+		margin: 0 0 12px 0;
+	}
+
+	.detail-card p {
+		font-size: var(--text-sm);
+		line-height: 1.6;
+		color: var(--text-secondary);
+		margin: 0;
+	}
+
+	.detail-card p strong {
+		color: var(--text-primary);
+	}
+
+	/* Eligibility grid - Who should apply */
+	.eligibility-grid {
+		display: grid;
+		grid-template-columns: 1.2fr 1fr 1fr;
+		gap: 20px;
+	}
+
+	.eligibility-card {
+		padding: 24px;
+		border-radius: 4px;
+	}
+
+	.eligibility-card.requirements {
+		background: linear-gradient(135deg, rgba(74, 127, 191, 0.1) 0%, rgba(74, 127, 191, 0.05) 100%);
+		border: 1px solid rgba(74, 127, 191, 0.2);
+	}
+
+	.eligibility-card.no-need {
+		background: #fff;
+		border: 1px solid var(--default-border-color);
+	}
+
+	.eligibility-card.do-need {
+		background: linear-gradient(135deg, rgba(104, 211, 145, 0.1) 0%, rgba(104, 211, 145, 0.05) 100%);
+		border: 1px solid rgba(104, 211, 145, 0.3);
+	}
+
+	.eligibility-card h3 {
+		font-family: 'Courier New', monospace;
+		font-size: 0.7rem;
+		font-weight: 700;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: var(--text-muted);
+		margin: 0 0 16px 0;
+	}
+
+	.eligibility-card ul {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+
+	.eligibility-card li {
+		position: relative;
+		padding-left: 18px;
+		margin-bottom: 10px;
+		font-size: var(--text-sm);
+		line-height: 1.5;
+		color: var(--text-secondary);
+	}
+
+	.eligibility-card li:last-child {
+		margin-bottom: 0;
+	}
+
+	.eligibility-card li::before {
+		content: '→';
+		position: absolute;
+		left: 0;
+		color: var(--color-accent-blue);
+		font-weight: 600;
+	}
+
+	.eligibility-card.no-need li::before {
+		content: '×';
+		color: var(--text-muted);
+	}
+
+	.eligibility-card.do-need li::before {
+		content: '✓';
+		color: #48bb78;
+	}
+
+	.eligibility-card li strong {
+		color: var(--text-primary);
+	}
+
+	/* FAQs Section */
+	.faqs-section {
+		padding: 56px 24px;
+		max-width: 750px;
+		margin: 0 auto;
+	}
+
+	/* After the summer */
+	.after-grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 48px;
+		align-items: center;
+	}
+
+	.after-intro {
+		font-family: 'Courier New', monospace;
+		font-size: 0.75rem;
+		font-weight: 600;
+		letter-spacing: 0.05em;
+		color: var(--text-muted);
+		margin-bottom: 16px;
+	}
+
+	.after-list {
+		list-style: none;
+		padding: 0;
+		margin: 0 0 24px 0;
+	}
+
+	.after-list li {
+		position: relative;
+		padding-left: 20px;
+		margin-bottom: 12px;
+		font-size: var(--text-base);
+		line-height: 1.6;
+		color: var(--text-secondary);
+	}
+
+	.after-list li::before {
+		content: '→';
+		position: absolute;
+		left: 0;
+		color: var(--color-accent-blue);
+		font-weight: 600;
+	}
+
+	.after-note {
+		font-family: Georgia, 'Times New Roman', serif;
+		font-size: 1.0625rem;
+		font-style: italic;
+		color: var(--text-primary);
+	}
+
+	.after-photo {
+		display: flex;
+		justify-content: center;
+	}
+
+	/* CTA Section */
+	.cta-section {
+		padding: 64px 24px;
+		background: linear-gradient(180deg, var(--color-cream-50) 0%, #fff 100%);
+	}
+
+	.cta-content {
+		max-width: 600px;
+		margin: 0 auto;
+		text-align: center;
+	}
+
+	.cta-title {
+		font-family: Georgia, 'Times New Roman', serif;
+		font-size: 1.75rem;
+		font-weight: 400;
+		color: var(--text-primary);
+		margin: 0 0 16px 0;
+	}
+
+	.cta-text {
+		font-size: 1.0625rem;
+		color: var(--text-primary);
+		margin: 0 0 8px 0;
+	}
+
+	.cta-subtext {
+		font-size: var(--text-base);
+		color: var(--text-secondary);
+		margin: 0 0 32px 0;
+	}
+
+	.cta-buttons {
+		margin-bottom: 24px;
+	}
+
+	.btn-apply {
+		display: inline-block;
+		padding: 16px 32px;
+		background: var(--color-orange-400);
+		color: #fff;
+		font-size: 1.0625rem;
+		font-weight: 600;
+		text-decoration: none;
+		border-radius: 4px;
+		box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.15);
+		transition: background 0.15s ease;
+	}
+
+	.btn-apply:hover {
+		background: var(--color-orange-500);
+	}
+
+	.cta-contact {
+		font-size: var(--text-sm);
+		color: var(--text-muted);
+	}
+
+	.cta-contact a {
+		color: var(--color-accent-blue);
+	}
+
+	/* Responsive */
+	@media (max-width: 768px) {
+		.content-section {
+			padding: 40px 16px;
+		}
+
+		.lead-text {
+			font-size: 1.125rem;
+		}
+
+		.section-header h2 {
+			font-size: 1.5rem;
+		}
+
+		.features-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.steps-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.steps-photos {
+			flex-direction: column;
+			align-items: center;
+			gap: 16px;
+		}
+
+		.photo-frame {
+			max-width: 260px;
+		}
+
+		.details-grid {
+			grid-template-columns: 1fr;
+			gap: 16px;
+		}
+
+		.eligibility-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.after-grid {
+			grid-template-columns: 1fr;
+			gap: 32px;
+		}
+
+		.after-photo {
+			order: -1;
+		}
+
+		.cta-title {
+			font-size: 1.5rem;
+		}
+	}
+
+	@media (max-width: 480px) {
+		.goal-text {
+			padding: 16px 20px;
+			font-size: 1rem;
+		}
+
+		.faqs-section {
+			padding: 36px 16px;
+		}
+
+		.cta-section {
+			padding: 48px 16px;
+		}
+
+		.feature-card {
+			padding: 20px;
+		}
+
+		.step-item {
+			padding: 16px;
+		}
+	}
+</style>
