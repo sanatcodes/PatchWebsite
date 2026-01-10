@@ -188,8 +188,10 @@ const { logoText = 'Patch' } = Astro.props;
     .header-links {
         display: flex;
         align-items: center;
-        gap: 24px;
+        gap: 32px;
         position: relative;
+        margin-left: auto;
+        margin-right: 40px;
     }
 
     .nav-link {
@@ -534,6 +536,12 @@ const { logoText = 'Patch' } = Astro.props;
         padding: 10px 12px;
         border-radius: 4px;
         transition: all 0.15s ease;
+    }
+
+    .mobile-nav-link {
+        margin-top: 8px;
+        margin-left: 0;
+        padding-left: 12px;
     }
 
     .mobile-nav-section a:hover,
